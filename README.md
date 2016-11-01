@@ -2,7 +2,7 @@
 自定义提示框
 
 ### 使用：
-<br/>1.添加XBAlertViewBase到工程，XBAlertViewBase传送门：[XBAlertViewBase传送门](https://github.com/huisedediao/XBAlertViewBase)
+<br/>1.添加XBAlertViewBase到工程，XBAlertViewBase传送门：[XBAlertViewBase](https://github.com/huisedediao/XBAlertViewBase)
 <br/>2.添加masonry到工程
 
 <br/>
