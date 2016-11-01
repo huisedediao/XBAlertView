@@ -3,7 +3,7 @@
 
 ### 使用：
 <br/>1.添加XBAlertViewBase到工程，XBAlertViewBase传送门：[XBAlertViewBase传送门](https://github.com/huisedediao/XBAlertViewBase)
-<br/>2.添加masonry
+<br/>2.添加masonry到工程
 
 <br/>
 
