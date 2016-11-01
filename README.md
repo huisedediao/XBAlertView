@@ -6,8 +6,7 @@
 <br/>2.添加masonry
 
 <br/>
-<br/>
-<br/>
+
 ### 效果图：
 ![image](https://github.com/huisedediao/XBAlertView/raw/master/show.png)<br/>
 
