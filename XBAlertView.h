@@ -46,6 +46,8 @@ typedef void (^CancelEventBlock) (XBAlertView *alertV);
 @property (copy,nonatomic) OkEventBlock okBlock;
 @property (copy,nonatomic) CancelEventBlock cancelBlock;
 
+@property (nonatomic,assign) BOOL isOnce;//一次性弹窗
+
 @property (assign,nonatomic) BOOL okBtnIsLeftSide;
 
 /** 只有一个按钮,确定 */
@@ -57,4 +59,6 @@ typedef void (^CancelEventBlock) (XBAlertView *alertV);
 @property (assign,nonatomic) BOOL doNotshowTitle;
 
 +(XBAlertView *)alertView;
+
+- (instancetype)initWithTitle:(nullable NSString *)title subTitle:(nullable NSString *)subTitle okButtonTitle:(nullable NSString *)okButtonTitle  cancelButtonTitle:(nullable NSString *)cancelButtonTitle okBlock:(nullable OkEventBlock)okBlock cancelBlock:(nullable CancelEventBlock)cancelBlock;
 @end

@@ -21,6 +21,21 @@
 
 @implementation XBAlertView
 
+- (instancetype)initWithTitle:(nullable NSString *)title subTitle:(nullable NSString *)subTitle okButtonTitle:(nullable NSString *)okButtonTitle  cancelButtonTitle:(nullable NSString *)cancelButtonTitle okBlock:(nullable OkEventBlock)okBlock cancelBlock:(nullable CancelEventBlock)cancelBlock
+{
+    XBAlertView *alertV = [XBAlertView alertView];
+    NSLog(@"init-%@\r",alertV);
+    alertV.title = title;
+    alertV.subTitle = subTitle;
+    alertV.cancelBlock = cancelBlock;
+    alertV.okBlock = okBlock;
+    alertV.isOnce = YES;
+    [alertV.okBtn setTitle:okButtonTitle forState:UIControlStateNormal];
+    [alertV.cancelBtn setTitle:cancelButtonTitle forState:UIControlStateNormal];
+    
+    return alertV;
+}
+
 +(XBAlertView *)alertView
 {
     XBAlertView *alertV=[[XBAlertView alloc] initWithDisplayView:[[UIApplication sharedApplication].delegate window]];
@@ -174,6 +189,15 @@
     
     [super show];
 }
+
+-(void)hidden
+{
+    [super hidden];
+    if (self.isOnce) {
+        [self removeFromSuperview];
+    }
+}
+
 
 -(void)setOkBtnIsLeftSide:(BOOL)okBtnIsLeftSide
 {
