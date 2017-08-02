@@ -13,36 +13,29 @@
 ### 示例代码：
 <br>
 <pre>
+
 #import "ViewController.h"
 #import "XBAlertView.h"
 
-@interface ViewController ()
-@property (nonatomic,strong) XBAlertView *alertView;
+@interface ViewController () <XBAlertViewDelegate>
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
-//注意要用懒加载，避免从xib或者sb加载的view遮住视图
--(XBAlertView *)alertView
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if (_alertView==nil)
-    {
-        _alertView=[XBAlertView alertView];
-        _alertView.fadeInFadeOut=YES;
-        _alertView.title=@"标题";
-        _alertView.subTitle=@"这是子标题-这是子标题-这是子标题-这是子标题-这是子标题-这是子标题-这是子标题-这是子标题-这是子标题";
-    }
-    return _alertView;
+    [[[XBAlertView alloc] initWithTitle:@"标题呵呵~" message:@"消息啦啦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
 }
 
-- (IBAction)showBtnClick:(id)sender {
-    [self.alertView show];
+- (void)alertView:(XBAlertView *)alertView clickedBtnAtIndex:(NSInteger)btnIndex
+{
+    [alertView hidden];
 }
 
 @end
