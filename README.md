@@ -8,7 +8,7 @@
 <br/>
 
 ### 效果图：
-![image](https://github.com/huisedediao/XBAlertView/raw/master/show.png)<br/>
+![image](https://github.com/huisedediao/XBAlertView/raw/master/showNew.png)<br/>
 
 ### 示例代码：
 <br>
