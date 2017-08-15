@@ -45,7 +45,7 @@ typedef void (^TouchBeginBlock)(XBAlertViewBase *alertView);
  */
 @property (assign,nonatomic,readonly) BOOL isShowState;
 
-/** 
+/**
  *  是否淡入淡出
  */
 @property (assign,nonatomic,getter=isFadeInFadeOut) BOOL fadeInFadeOut;
@@ -145,6 +145,10 @@ typedef void (^TouchBeginBlock)(XBAlertViewBase *alertView);
  */
 -(void)keyboardWillHide:(NSNotification *)noti;
 
+/**
+ 在show之前调用，供子类继承
+ */
+- (void)actionBeforeShow;
 
 /** 代理 */
 @property (nonatomic,weak) id <XBAlertViewBaseLayoutDelegate> layoutDelegate;

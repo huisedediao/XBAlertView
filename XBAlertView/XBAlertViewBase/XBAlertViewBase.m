@@ -7,7 +7,7 @@
 
 @interface XBAlertViewBase ()
 
-@property (assign,nonatomic,getter=isNotFirstRun) BOOL notFirstRun;
+//@property (assign,nonatomic,getter=isNotFirstRun) BOOL notFirstRun;
 
 
 @end
@@ -150,6 +150,11 @@
     self.backgroundView.backgroundColor=backgroundViewColor;
 }
 
+- (void)actionBeforeShow
+{
+
+}
+
 -(void)show
 {
     NSLog(@"AlertViewBase_show");
@@ -161,12 +166,12 @@
     {
         [self.displayView addSubview:self.backgroundView];
         [self.displayView addSubview:self];
-        [self setInitLayout];
     }
-    if (self.isNotFirstRun==NO)
+    [self actionBeforeShow];
+//    if (self.isNotFirstRun==NO)
     {
         [self setInitLayout];
-        self.notFirstRun=YES;
+//        self.notFirstRun=YES;
     }
     
     self.backgroundView.hidden=NO;

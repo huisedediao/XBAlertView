@@ -32,7 +32,7 @@
 
 - (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
 {
-    //    if (self = [super initWithDisplayView:[[UIApplication sharedApplication].delegate window]])
+//    if (self = [super initWithDisplayView:[[UIApplication sharedApplication].delegate window]])
     UIWindow *window = [XBAlertViewBaseManager shared].window;
     if (self = [super initWithDisplayView:window])
     {
@@ -78,6 +78,45 @@
 
 #pragma mark - 方法重写
 
+- (void)actionBeforeShow
+{
+    //创建button
+    if (self.arr_buttonTitles.count < 1)
+    {
+        [self.v_customViewBG mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.lessThanOrEqualTo(self).offset(0);
+        }];
+    }
+    else if (self.arr_buttonTitles.count < 2)//只有一个按钮
+    {
+        [self createButtonForOne];
+    }
+    else if (self.arr_buttonTitles.count < 3)//有两个按钮
+    {
+        [self createButtonForTwo];
+    }
+    else //3个及以上个按钮
+    {
+        [self createButtonForThreeOrMore];
+    }
+    
+    self.showLayoutBlock = ^(XBAlertViewBase *alertView) {
+        [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.leading.equalTo(alertView.superview).offset(30);
+            make.trailing.equalTo(alertView.superview).offset(-30);
+            make.center.equalTo(alertView.superview);
+        }];
+    };
+    
+    self.hiddenLayoutBlock = ^(XBAlertViewBase *alertView) {
+        [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.leading.equalTo(alertView.superview).offset(30);
+            make.trailing.equalTo(alertView.superview).offset(-30);
+            make.center.equalTo(alertView.superview);
+        }];
+    };
+}
+/*
 - (void)show
 {
     //创建button
@@ -118,6 +157,7 @@
     
     [super show];
 }
+ */
 
 -(void)hidden
 {
