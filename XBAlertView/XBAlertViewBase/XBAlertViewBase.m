@@ -1,7 +1,9 @@
 
 #import "XBAlertViewBase.h"
 #import "UIView+AdaptKeyboard.h"
+
 #define XBWeakSelf __weak __typeof(&*self)xbWeakSelf = self;
+#define KAnimationTime (0.5)
 
 @interface XBAlertViewBase ()
 
@@ -152,7 +154,7 @@
 {
     NSLog(@"AlertViewBase_show");
     self.displayView.userInteractionEnabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.displayView.userInteractionEnabled = YES;
     });
     if (self.superview == nil)
@@ -231,7 +233,7 @@
         [self sameDemoOfHidden];
     }
     _isShowState=NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self removeFromSuperview];
         [self.backgroundView removeFromSuperview];
         self.displayView.userInteractionEnabled = YES;

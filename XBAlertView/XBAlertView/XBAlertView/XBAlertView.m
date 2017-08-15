@@ -9,6 +9,7 @@
 #import "XBAlertView.h"
 #import "Masonry.h"
 #import "XBAlertViewConfig.h"
+#import "XBAlertViewBaseManager.h"
 
 @interface XBAlertView ()
 ///自定义view的背景view，用来先占位置的
@@ -21,7 +22,7 @@
 {
     if (self = [super initWithFrame:frame])
     {
-        self.layer.cornerRadius = 15;
+        self.layer.cornerRadius = 8;
         self.clipsToBounds = YES;
         self.hideWhileTouchOtherArea = NO;
         self.fadeInFadeOut = YES;
@@ -31,7 +32,9 @@
 
 - (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
 {
-    if (self = [super initWithDisplayView:[[UIApplication sharedApplication].delegate window]])
+    //    if (self = [super initWithDisplayView:[[UIApplication sharedApplication].delegate window]])
+    UIWindow *window = [XBAlertViewBaseManager shared].window;
+    if (self = [super initWithDisplayView:window])
     {
         self.str_title = title;
         self.str_message = message;
@@ -136,9 +139,9 @@
     UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] bgColor:XB_Color_blue font:XB_Font(18) titleColor:[UIColor whiteColor]];
     
     [button mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.v_customViewBG.mas_bottom).offset(XB_GHeightAdjust_ip6([self getSpaceOfCustomViewAndButton]));
+        make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
         make.leading.trailing.equalTo(self);
-        make.height.mas_equalTo(XB_GHeightAdjust_ip6(kXBAlertViewButtonHeight));
+        make.height.mas_equalTo(kXBAlertViewButtonHeight);
         make.bottom.lessThanOrEqualTo(self).offset(0);
     }];
     
@@ -155,10 +158,10 @@
     UIButton *button1 = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] bgColor:XB_Color_gray font:XB_Font(18) titleColor:XB_color_dark];
     
     [button1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.v_customViewBG.mas_bottom).offset(XB_GHeightAdjust_ip6([self getSpaceOfCustomViewAndButton]));
+        make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
         make.leading.equalTo(self);
         make.trailing.equalTo(self.mas_centerX);
-        make.height.mas_equalTo(XB_GHeightAdjust_ip6(kXBAlertViewButtonHeight));
+        make.height.mas_equalTo(kXBAlertViewButtonHeight);
         make.bottom.lessThanOrEqualTo(self).offset(0);
     }];
     
@@ -204,7 +207,7 @@
         [line mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (i == 0)
             {
-                make.top.equalTo(self.v_customViewBG.mas_bottom).offset(XB_GHeightAdjust_ip6([self getSpaceOfCustomViewAndButton]));
+                make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
             }
             else
             {
@@ -220,7 +223,7 @@
         [button mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(line.mas_bottom);
             make.leading.trailing.equalTo(self);
-            make.height.mas_equalTo(XB_GHeightAdjust_ip6(kXBAlertViewButtonHeight));
+            make.height.mas_equalTo(kXBAlertViewButtonHeight);
             if (i == self.arr_buttonTitles.count - 1)
             {
                 make.bottom.lessThanOrEqualTo(self);
@@ -250,13 +253,10 @@
 #pragma mark - 点击事件
 - (void)btnClick:(UIButton *)button
 {
+    [self hidden];
     if (self.delegate && [self.delegate respondsToSelector:@selector(alertView:clickedBtnAtIndex:)])
     {
         [self.delegate alertView:self clickedBtnAtIndex:button.tag - kXBAlertViewTagBase];
-    }
-    if (self.arr_buttonTitles.count == 1)
-    {
-        [self hidden];
     }
 }
 
@@ -265,15 +265,15 @@
 
 - (CGFloat)getSpaceOfTitleAndMsg
 {
-    return self.str_title.length ? XB_GHeightAdjust_ip6(5) : 0;
+    return self.str_title.length ? 5 : 0;
 }
 - (CGFloat)getSpaceOfMsgAndCustomView
 {
-    return self.str_message.length ? XB_GHeightAdjust_ip6(25) : 0;
+    return self.str_message.length ? 25 : 0;
 }
 - (CGFloat)getSpaceOfCustomViewAndButton
 {
-    return self.v_custom ? XB_GHeightAdjust_ip6(30) : 0;
+    return self.v_custom ? 30 : 0;
 }
 
 
@@ -290,14 +290,14 @@
         
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = XB_color_Black;
-        label.font = XB_Font_bold(XB_GHeightAdjust_ip6(20));
+        label.font = XB_Font_bold(20);
         label.numberOfLines = 0;
         label.text = self.str_title;
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(XB_GHeightAdjust_ip6(25));
-            make.leading.equalTo(self).offset(XB_GWidthAdjust_ip6(30));
-            make.trailing.equalTo(self).offset(XB_GWidthAdjust_ip6(-30));
+            make.top.equalTo(self).offset(25);
+            make.leading.equalTo(self).offset(30);
+            make.trailing.equalTo(self).offset(-30);
         }];
         
         _lb_title = label;
@@ -314,14 +314,14 @@
         
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = XB_color_Black;
-        label.font = XB_Font(XB_GHeightAdjust_ip6(16));
+        label.font = XB_Font(16);
         label.numberOfLines = 0;
         label.text = self.str_message;
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.lb_title.mas_bottom).offset(XB_GHeightAdjust_ip6([self getSpaceOfTitleAndMsg]));
-            make.leading.equalTo(self).offset(XB_GWidthAdjust_ip6(30));
-            make.trailing.equalTo(self).offset(XB_GWidthAdjust_ip6(-30));
+            make.top.equalTo(self.lb_title.mas_bottom).offset([self getSpaceOfTitleAndMsg]);
+            make.leading.equalTo(self).offset(30);
+            make.trailing.equalTo(self).offset(-30);
         }];
         
         _lb_message = label;
@@ -338,7 +338,7 @@
         view.backgroundColor = [UIColor redColor];
         
         [view mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.lb_message.mas_bottom).offset(XB_GHeightAdjust_ip6([self getSpaceOfMsgAndCustomView]));
+            make.top.equalTo(self.lb_message.mas_bottom).offset([self getSpaceOfMsgAndCustomView]);
             make.centerX.equalTo(self);
         }];
         
