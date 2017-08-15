@@ -10,7 +10,7 @@
 #import <objc/message.h>
 #import "XBAlertViewBaseManager.h"
 
-#define KAnimationTime (0.4)
+#define KAnimationTime (0.25)
 
 @implementation XBAlertViewBase (Queue)
 
@@ -53,7 +53,7 @@
     }
     if (arrM_alertViews.count > 0)
     {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * 0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[arrM_alertViews lastObject] logShow];
         });
     }
