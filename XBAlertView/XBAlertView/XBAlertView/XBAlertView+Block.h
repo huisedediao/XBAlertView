@@ -16,5 +16,5 @@
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message
             cancelButtonTitle:(NSString *)cancelButtonTitle
              otherButtonTitle:(NSString *)otherButtonTitle;
-- (void)showUsingBlock:(void (^)(XBAlertView *, NSInteger))block;
+- (void)showUsingBlock:(void (^)(XBAlertView *alertView, NSInteger index))block;
 @end
