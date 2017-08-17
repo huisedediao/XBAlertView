@@ -101,10 +101,6 @@
         lastAngle = angle;
     });
 }
-- (void)resetRotation
-{
-    [self.window xb_makeRotationWithAngle:-lastAngle duration:0];
-}
 
 - (UIWindow *)window
 {
