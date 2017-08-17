@@ -1,12 +1,12 @@
 //
-//  XBAlertViewBaseManager.m
-//  AlertViewTest
+//  XBAlertViewManager.m
+//  d11
 //
-//  Created by xxb on 2017/8/15.
-//  Copyright © 2017年 xxb. All rights reserved.
+//  Created by xxb on 2017/8/17.
+//  Copyright © 2017年 DreamCatcher. All rights reserved.
 //
 
-#import "XBAlertViewBaseManager.h"
+#import "XBAlertViewManager.h"
 #import "UIView+Animation.h"
 
 //屏幕宽高
@@ -15,13 +15,13 @@
 
 #define kAnimationTime (0.3)
 
-@interface XBAlertViewBaseManager ()
+@interface XBAlertViewManager ()
 {
     CGFloat lastAngle;
 }
 @end
 
-@implementation XBAlertViewBaseManager
+@implementation XBAlertViewManager
 
 + (instancetype)shared
 {
@@ -29,7 +29,7 @@
 }
 + (instancetype)allocWithZone:(struct _NSZone *)zone
 {
-    static XBAlertViewBaseManager *manager = nil;
+    static XBAlertViewManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [super allocWithZone:zone];
@@ -128,4 +128,5 @@
     }
     return _arrM_alertViews;
 }
+
 @end

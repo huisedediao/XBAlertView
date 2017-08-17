@@ -123,7 +123,7 @@
     self.backgroundView=[[UIView alloc] initWithFrame:CGRectMake(-2500, -2500, 10000, 10000)];
     [displayView addSubview:self.backgroundView];
     [displayView addSubview:self];
-    self.backgroundView.backgroundColor=self.backgroundViewColor?self.backgroundViewColor:[[UIColor colorWithHexString:@"#0A0D19"] colorWithAlphaComponent:0.8];
+    self.backgroundView.backgroundColor=self.backgroundViewColor?self.backgroundViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.5];
     self.backgroundView.hidden=YES;
     [self.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBackgroundView:)]];
 }

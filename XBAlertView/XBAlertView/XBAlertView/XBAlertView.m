@@ -9,7 +9,7 @@
 #import "XBAlertView.h"
 #import "Masonry.h"
 #import "XBAlertViewConfig.h"
-#import "XBAlertViewBaseManager.h"
+#import "XBAlertViewManager.h"
 
 @interface XBAlertView ()
 ///自定义view的背景view，用来先占位置的
@@ -33,8 +33,7 @@
 
 - (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
 {
-    //    if (self = [super initWithDisplayView:[[UIApplication sharedApplication].delegate window]])
-    UIWindow *window = [XBAlertViewBaseManager shared].window;
+    UIWindow *window = [XBAlertViewManager shared].window;
     if (self = [super initWithDisplayView:window])
     {
         self.str_title = title;

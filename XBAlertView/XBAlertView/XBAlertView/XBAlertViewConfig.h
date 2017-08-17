@@ -21,7 +21,7 @@
 #define getAdjustSizeWith_text_width_font(text,width,font) ({[text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :font} context:NULL].size;})
 
 #define XB_Color_gray [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1]
-#define XB_Color_blue [UIColor colorWithRed:80/255.0 green:115/255.0 blue:208/255.0 alpha:1]
+#define XB_Color_blue [UIColor colorWithRed:49/255.0 green:106/255.0 blue:190/255.0 alpha:1]
 #define XB_color_Black             [UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1]
 #define XB_color_dark             [UIColor colorWithRed:36/255.0 green:42/255.0 blue:62/255.0 alpha:1]
 
