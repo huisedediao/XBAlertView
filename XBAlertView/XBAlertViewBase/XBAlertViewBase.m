@@ -41,11 +41,11 @@
     if (self=[self init]) {
         //self.backgroundColor=[UIColor whiteColor];
         self.displayView=displayView;
-//        self.hidden=YES;
-//        self.animating=YES;
-//        self.duration=0.3;
-//        self.hideWhileTouchOtherArea=YES;
-//        self.backgroundViewFadeInFadeOut=YES;
+        //        self.hidden=YES;
+        //        self.animating=YES;
+        //        self.duration=0.3;
+        //        self.hideWhileTouchOtherArea=YES;
+        //        self.backgroundViewFadeInFadeOut=YES;
     }
     return self;
 }
@@ -96,7 +96,7 @@
     {
         return;
     }
-
+    
     if (self.isShowKeyboard)
     {
         return;
@@ -120,7 +120,7 @@
     _displayView=displayView;
     
     _isShowState=NO;
-    self.backgroundView=[[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.backgroundView=[[UIView alloc] initWithFrame:CGRectMake(-2500, -2500, 10000, 10000)];
     [displayView addSubview:self.backgroundView];
     [displayView addSubview:self];
     self.backgroundView.backgroundColor=self.backgroundViewColor?self.backgroundViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6];
@@ -152,7 +152,7 @@
 
 - (void)actionBeforeShow
 {
-
+    
 }
 
 -(void)show
@@ -168,10 +168,10 @@
         [self.displayView addSubview:self];
     }
     [self actionBeforeShow];
-//    if (self.isNotFirstRun==NO)
+    //    if (self.isNotFirstRun==NO)
     {
         [self setInitLayout];
-//        self.notFirstRun=YES;
+        //        self.notFirstRun=YES;
     }
     
     self.backgroundView.hidden=NO;

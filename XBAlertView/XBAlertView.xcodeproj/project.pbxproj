@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F14909051F42FC520013C38B /* XBAlertViewBase+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = F14909021F42FC520013C38B /* XBAlertViewBase+Queue.m */; };
 		F14909061F42FC520013C38B /* XBAlertViewBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F14909041F42FC520013C38B /* XBAlertViewBaseManager.m */; };
+		F14909DD1F4537120013C38B /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = F14909DC1F4537120013C38B /* UIView+Animation.m */; };
 		F1FF69BA1F3070FE001EC42A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FF69B91F3070FE001EC42A /* main.m */; };
 		F1FF69BD1F3070FE001EC42A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FF69BC1F3070FE001EC42A /* AppDelegate.m */; };
 		F1FF69C01F3070FE001EC42A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FF69BF1F3070FE001EC42A /* ViewController.m */; };
@@ -54,6 +55,8 @@
 		F14909021F42FC520013C38B /* XBAlertViewBase+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XBAlertViewBase+Queue.m"; sourceTree = "<group>"; };
 		F14909031F42FC520013C38B /* XBAlertViewBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAlertViewBaseManager.h; sourceTree = "<group>"; };
 		F14909041F42FC520013C38B /* XBAlertViewBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAlertViewBaseManager.m; sourceTree = "<group>"; };
+		F14909DB1F4537120013C38B /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
+		F14909DC1F4537120013C38B /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		F1FF69B51F3070FE001EC42A /* XBAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XBAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FF69B91F3070FE001EC42A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F1FF69BB1F3070FE001EC42A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 		F1FF69EB1F307116001EC42A /* XBAlertViewBase */ = {
 			isa = PBXGroup;
 			children = (
+				F14909DB1F4537120013C38B /* UIView+Animation.h */,
+				F14909DC1F4537120013C38B /* UIView+Animation.m */,
 				F14909011F42FC520013C38B /* XBAlertViewBase+Queue.h */,
 				F14909021F42FC520013C38B /* XBAlertViewBase+Queue.m */,
 				F14909031F42FC520013C38B /* XBAlertViewBaseManager.h */,
@@ -392,6 +397,7 @@
 				F1FF6A181F30716C001EC42A /* NSArray+MASAdditions.m in Sources */,
 				F1FF69EF1F307116001EC42A /* XBAlertViewBase.m in Sources */,
 				F1FF6A171F30716C001EC42A /* MASViewConstraint.m in Sources */,
+				F14909DD1F4537120013C38B /* UIView+Animation.m in Sources */,
 				F1FF6A151F30716C001EC42A /* MASLayoutConstraint.m in Sources */,
 				F1FF69C01F3070FE001EC42A /* ViewController.m in Sources */,
 				F1FF69F71F307141001EC42A /* UIView+AdaptKeyboard.m in Sources */,
