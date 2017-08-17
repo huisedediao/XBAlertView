@@ -56,7 +56,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceOrientationDidChange:)
-                                                 name:UIDeviceOrientationDidChangeNotification
+                                                 name:UIApplicationDidChangeStatusBarOrientationNotification
                                                object:nil];
 }
 
@@ -96,7 +96,9 @@
         
         CGFloat angleTemp = angle - lastAngle;
         
-        [self.window xb_makeRotationWithAngle:angleTemp duration:(angleTemp == 180 || angleTemp == -180)? kAnimationTime * 2 : kAnimationTime];
+        
+        
+        [_window xb_makeRotationWithAngle:angleTemp duration:notification ? ((angleTemp == 180 || angleTemp == -180)? kAnimationTime * 2 : kAnimationTime) : 0];
         
         lastAngle = angle;
     });
@@ -106,13 +108,15 @@
 {
     if (_window == nil)
     {
-        UIWindow *window = [[UIWindow alloc] init];
+        UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, MIN(kScreenWidth, kScreenHeight), MAX(kScreenWidth, kScreenHeight))];
         window.windowLevel = 2000;
         window.hidden = NO;
         [window makeKeyWindow];
         window.backgroundColor = [UIColor clearColor];
         
         _window = window;
+        
+        [self deviceOrientationDidChange:nil];
     }
     return _window;
 }
