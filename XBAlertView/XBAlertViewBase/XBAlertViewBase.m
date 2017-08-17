@@ -114,7 +114,7 @@
     [self adaptKeyBoardForHideWithDisplayView:self.displayView];
 }
 
-
+//弹窗背景颜色
 -(void)setDisplayView:(id)displayView
 {
     _displayView=displayView;
@@ -123,7 +123,7 @@
     self.backgroundView=[[UIView alloc] initWithFrame:CGRectMake(-2500, -2500, 10000, 10000)];
     [displayView addSubview:self.backgroundView];
     [displayView addSubview:self];
-    self.backgroundView.backgroundColor=self.backgroundViewColor?self.backgroundViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6];
+    self.backgroundView.backgroundColor=self.backgroundViewColor?self.backgroundViewColor:[[UIColor colorWithHexString:@"#0A0D19"] colorWithAlphaComponent:0.8];
     self.backgroundView.hidden=YES;
     [self.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBackgroundView:)]];
 }
@@ -162,11 +162,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.displayView.userInteractionEnabled = YES;
     });
-    if (self.superview == nil)
-    {
-        [self.displayView addSubview:self.backgroundView];
-        [self.displayView addSubview:self];
-    }
+    [self fixSuperView];
     [self actionBeforeShow];
     //    if (self.isNotFirstRun==NO)
     {
@@ -221,9 +217,19 @@
     [self.superview layoutIfNeeded];
 }
 
+- (void)fixSuperView
+{
+    if (self.superview == nil)
+    {
+        [self.displayView addSubview:self.backgroundView];
+        [self.displayView addSubview:self];
+    }
+}
+
 -(void)hidden
 {
     NSLog(@"AlertViewBase_hidden");
+    [self fixSuperView];
     self.displayView.userInteractionEnabled = NO;
     if(self.animating)
     {
