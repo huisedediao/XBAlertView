@@ -27,7 +27,7 @@
 
 - (void)alertView:(XBAlertView *)alertView clickedBtnAtIndex:(NSInteger)btnIndex
 {
-    [alertView hidden];
+
 }
 
 @end

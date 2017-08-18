@@ -330,6 +330,7 @@
 				TargetAttributes = {
 					F1FF69B41F3070FE001EC42A = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = RC2BP8QGY9;
 						ProvisioningStyle = Automatic;
 					};
 					F1FF69CD1F3070FE001EC42A = {
@@ -566,6 +567,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RC2BP8QGY9;
 				INFOPLIST_FILE = XBAlertView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.company.XBAlertView;
@@ -577,6 +579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RC2BP8QGY9;
 				INFOPLIST_FILE = XBAlertView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.company.XBAlertView;
