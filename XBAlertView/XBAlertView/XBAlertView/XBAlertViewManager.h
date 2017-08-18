@@ -15,7 +15,7 @@
 
 @property (nonatomic,strong) UIWindow *window;
 
-@property (nonatomic,assign) BOOL b_keepShow;
+@property (atomic,assign) BOOL b_keepShow;
 
 + (instancetype)shared;
 
