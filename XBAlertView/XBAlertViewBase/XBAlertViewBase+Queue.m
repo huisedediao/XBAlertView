@@ -29,7 +29,7 @@
 {
     @synchronized (self)
     {
-        if ([NSStringFromClass([self class]) isEqualToString:@"XBAlertView"] == false)
+        if ([self isKindOfClass:NSClassFromString(@"XBAlertView")] == false)
         {
             [self logShow];
             return;
@@ -56,7 +56,7 @@
 {
     @synchronized (self)
     {
-        if ([NSStringFromClass([self class]) isEqualToString:@"XBAlertView"] == false)
+        if ([self isKindOfClass:NSClassFromString(@"XBAlertView")] == false)
         {
             [self logHidden];
             return;
