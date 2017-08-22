@@ -14,11 +14,11 @@
  参数1：展示在哪个view上（相对于哪个view调整位置）
  参数2：键盘将要展示通知
  */
--(void)adaptKeyBoardForShowWithDisplayView:(UIView *)displayView notification:(NSNotification *)noti;
+-(void)xb_adaptKeyBoardForShowWithDisplayView:(UIView *)displayView notification:(NSNotification *)noti;
 
 
 /**
  * 参数：展示在哪个view上 （相对于哪个view调整位置）
  */
--(void)adaptKeyBoardForHideWithDisplayView:(UIView *)displayView;
+-(void)xb_adaptKeyBoardForHideWithDisplayView:(UIView *)displayView;
 @end

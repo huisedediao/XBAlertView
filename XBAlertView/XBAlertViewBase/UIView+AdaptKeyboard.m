@@ -11,7 +11,7 @@
 @implementation UIView (AdaptKeyboard)
 
 /** 键盘不遮挡所需view */
--(void)adaptKeyBoardForShowWithDisplayView:(UIView *)displayView notification:(NSNotification *)noti
+-(void)xb_adaptKeyBoardForShowWithDisplayView:(UIView *)displayView notification:(NSNotification *)noti
 {
     [displayView layoutIfNeeded];
     
@@ -47,7 +47,7 @@
     }
 }
 
--(void)adaptKeyBoardForHideWithDisplayView:(UIView *)displayView
+-(void)xb_adaptKeyBoardForHideWithDisplayView:(UIView *)displayView
 {
     CGRect tempRect = displayView.frame;
     tempRect.origin.y=0;

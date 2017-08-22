@@ -102,7 +102,7 @@
         return;
     }
     _isShowKeyboard=YES;
-    [self adaptKeyBoardForShowWithDisplayView:self.displayView notification:noti];
+    [self xb_adaptKeyBoardForShowWithDisplayView:self.displayView notification:noti];
 }
 -(void)keyboardWillHide:(NSNotification *)noti
 {
@@ -111,7 +111,7 @@
         return;
     }
     _isShowKeyboard=NO;
-    [self adaptKeyBoardForHideWithDisplayView:self.displayView];
+    [self xb_adaptKeyBoardForHideWithDisplayView:self.displayView];
 }
 
 -(void)setDisplayView:(id)displayView
