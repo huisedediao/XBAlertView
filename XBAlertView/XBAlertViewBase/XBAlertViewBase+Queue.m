@@ -1,18 +1,18 @@
 //
-//  XBAlertView+Queue.m
-//  d11
+//  XBAlertViewBase+Queue.m
+//  XBAlertView
 //
-//  Created by xxb on 2017/8/17.
-//  Copyright © 2017年 DreamCatcher. All rights reserved.
+//  Created by xxb on 2017/8/22.
+//  Copyright © 2017年 xxb. All rights reserved.
 //
 
-#import "XBAlertView+Queue.h"
+#import "XBAlertViewBase+Queue.h"
 #import <objc/message.h>
 #import "XBAlertViewManager.h"
 
 #define KAnimationTime (0.25)
 
-@implementation XBAlertView (Queue)
+@implementation XBAlertViewBase (Queue)
 
 + (void)load
 {
@@ -29,10 +29,15 @@
 {
     @synchronized (self)
     {
+        if ([NSStringFromClass([self class]) isEqualToString:@"XBAlertView"] == false)
+        {
+            [self logShow];
+            return;
+        }
         [[UIApplication sharedApplication].delegate window].userInteractionEnabled = NO;
         [XBAlertViewManager shared].window.hidden = NO;
         
-        XBAlertView *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
+        XBAlertViewBase *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
         [alertView logHidden];
         [[XBAlertViewManager shared].arrM_alertViews addObject:self];
         
@@ -51,6 +56,11 @@
 {
     @synchronized (self)
     {
+        if ([NSStringFromClass([self class]) isEqualToString:@"XBAlertView"] == false)
+        {
+            [self logHidden];
+            return;
+        }
         [self logHidden];
         [XBAlertViewManager shared].b_keepShow = NO;
         NSMutableArray *arrM_alertViews = [XBAlertViewManager shared].arrM_alertViews;
