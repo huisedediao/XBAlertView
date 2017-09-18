@@ -7,14 +7,9 @@
 
 @interface XBAlertViewBase ()
 
-//@property (assign,nonatomic,getter=isNotFirstRun) BOOL notFirstRun;
-
-
 @end
 
-
 @implementation XBAlertViewBase
-
 
 +(XBAlertViewBase *)alertMenuWithDisplayView:(id)displayView
 {
@@ -38,14 +33,9 @@
 
 -(id)initWithDisplayView:(id)displayView
 {
-    if (self=[self init]) {
-        //self.backgroundColor=[UIColor whiteColor];
+    if (self=[self init])
+    {
         self.displayView=displayView;
-        //        self.hidden=YES;
-        //        self.animating=YES;
-        //        self.duration=0.3;
-        //        self.hideWhileTouchOtherArea=YES;
-        //        self.backgroundViewFadeInFadeOut=YES;
     }
     return self;
 }
@@ -197,7 +187,6 @@
     {
         self.backgroundView.alpha=1;
     }
-    
     
     if (self.showLayoutBlock)
     {

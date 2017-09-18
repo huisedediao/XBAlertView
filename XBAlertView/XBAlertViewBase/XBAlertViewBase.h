@@ -61,17 +61,17 @@ typedef void (^TouchBeginBlock)(XBAlertViewBase *alertView);
 @property (assign,nonatomic) CGFloat duration;
 
 /**
- bottomAlertMenu显示时的位置
+ 显示时的位置
  */
 @property (assign,nonatomic) CGRect showFrame;
 
 /**
- bottomAlertMenu隐藏时的位置
+ 隐藏时的位置
  */
 @property (assign,nonatomic) CGRect hiddenFrame;
 
 /**
- bottomAlertMenu显示在哪个view上(或者window)
+ 显示在哪个view上(或者window)
  */
 @property (weak,nonatomic)UIView *displayView;
 
@@ -112,7 +112,7 @@ typedef void (^TouchBeginBlock)(XBAlertViewBase *alertView);
 
 
 /**
- 类方法创建bottomAlertMenu
+ 类方法创建
  */
 +(XBAlertViewBase *)alertMenuWithDisplayView:(id)displayView;
 
@@ -122,12 +122,12 @@ typedef void (^TouchBeginBlock)(XBAlertViewBase *alertView);
 -(id)initWithDisplayView:(id)displayView;
 
 /**
- 显示bottomAlertMenu
+ 显示
  */
 -(void)show;
 
 /**
- 隐藏bottomAlertMenu
+ 隐藏
  */
 -(void)hidden;
 
