@@ -3,7 +3,7 @@
 #import "UIView+AdaptKeyboard.h"
 
 #define XBWeakSelf __weak __typeof(&*self)xbWeakSelf = self;
-#define KAnimationTime (0.5)
+#define KDisplayViewDidableTime (0.5)
 
 @interface XBAlertViewBase ()
 
@@ -144,20 +144,21 @@
     
 }
 
+- (void)controlDisplayViewUserInteractionEnabled
+{
+    self.displayView.userInteractionEnabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KDisplayViewDidableTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.displayView.userInteractionEnabled = YES;
+    });
+}
+
 -(void)show
 {
     NSLog(@"AlertViewBase_show");
-    self.displayView.userInteractionEnabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.displayView.userInteractionEnabled = YES;
-    });
+    [self controlDisplayViewUserInteractionEnabled];
     [self fixSuperView];
     [self actionBeforeShow];
-    //    if (self.isNotFirstRun==NO)
-    {
-        [self setInitLayout];
-        //        self.notFirstRun=YES;
-    }
+    [self setInitLayout];
     
     self.backgroundView.hidden=NO;
     self.hidden=NO;
@@ -218,7 +219,7 @@
 {
     NSLog(@"AlertViewBase_hidden");
     [self fixSuperView];
-    self.displayView.userInteractionEnabled = NO;
+    [self controlDisplayViewUserInteractionEnabled];
     if(self.animating)
     {
         [UIView animateWithDuration:self.duration animations:^{
@@ -232,10 +233,9 @@
         [self sameDemoOfHidden];
     }
     _isShowState=NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KDisplayViewDidableTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self removeFromSuperview];
         [self.backgroundView removeFromSuperview];
-        self.displayView.userInteractionEnabled = YES;
     });
 }
 //设置初始位置(隐藏时的位置)
