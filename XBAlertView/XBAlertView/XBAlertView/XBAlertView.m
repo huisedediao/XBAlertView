@@ -11,6 +11,8 @@
 #import "XBAlertViewConfig.h"
 #import "XBAlertViewManager.h"
 
+#define KSpaceToBorder (30)
+
 @interface XBAlertView ()
 ///自定义view的背景view，用来先占位置的
 @property (nonatomic,strong) UIView *v_customViewBG;
@@ -27,6 +29,9 @@
         self.hideWhileTouchOtherArea = NO;
         self.fadeInFadeOut = YES;
         self.needAdaptKeyboard = YES;
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.greaterThanOrEqualTo(@(KSpaceToBorder * 2));
+        }];
     }
     return self;
 }
@@ -116,48 +121,6 @@
         }];
     };
 }
-/*
- - (void)show
- {
- //创建button
- if (self.arr_buttonTitles.count < 1)
- {
- [self.v_customViewBG mas_updateConstraints:^(MASConstraintMaker *make) {
- make.bottom.lessThanOrEqualTo(self).offset(0);
- }];
- }
- else if (self.arr_buttonTitles.count < 2)//只有一个按钮
- {
- [self createButtonForOne];
- }
- else if (self.arr_buttonTitles.count < 3)//有两个按钮
- {
- [self createButtonForTwo];
- }
- else //3个及以上个按钮
- {
- [self createButtonForThreeOrMore];
- }
- 
- self.showLayoutBlock = ^(XBAlertViewBase *alertView) {
- [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
- make.leading.equalTo(alertView.superview).offset(30);
- make.trailing.equalTo(alertView.superview).offset(-30);
- make.center.equalTo(alertView.superview);
- }];
- };
- 
- self.hiddenLayoutBlock = ^(XBAlertViewBase *alertView) {
- [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
- make.leading.equalTo(alertView.superview).offset(30);
- make.trailing.equalTo(alertView.superview).offset(-30);
- make.center.equalTo(alertView.superview);
- }];
- };
- 
- [super show];
- }
- */
 
 -(void)hidden
 {
@@ -336,8 +299,8 @@
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(25);
-            make.leading.equalTo(self).offset(30);
-            make.trailing.equalTo(self).offset(-30);
+            make.leading.equalTo(self).offset(KSpaceToBorder);
+            make.trailing.equalTo(self).offset(-KSpaceToBorder);
         }];
         
         _lb_title = label;
@@ -360,8 +323,8 @@
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.lb_title.mas_bottom).offset([self getSpaceOfTitleAndMsg]);
-            make.leading.equalTo(self).offset(30);
-            make.trailing.equalTo(self).offset(-30);
+            make.leading.equalTo(self).offset(KSpaceToBorder);
+            make.trailing.equalTo(self).offset(-KSpaceToBorder);
         }];
         
         _lb_message = label;
