@@ -11,6 +11,10 @@
 #import "XBAlertViewConfig.h"
 #import "XBAlertViewManager.h"
 
+@interface XBAlertView ()
+@property (nonatomic,assign) BOOL actionBeforeShowRunned;
+@end
+
 @implementation XBAlertView
 - (void)show
 {
@@ -19,7 +23,8 @@
 }
 - (void)refreshUI
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (self.subviews.count)
+    {
         if (self.arr_prominentIndexs.count)
         {
             for (UIView *tempV in self.subviews)
@@ -38,7 +43,13 @@
                 }
             }
         }
-    });
+    }
+    else
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self refreshUI];
+        });
+    }
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -119,6 +130,11 @@
 
 - (void)actionBeforeShow
 {
+    if (self.actionBeforeShowRunned == YES)
+    {
+        return;
+    }
+    self.actionBeforeShowRunned = YES;
     //创建button
     if (self.arr_buttonTitles.count < 1)
     {
@@ -173,11 +189,6 @@
 #pragma mark - 创建按钮
 - (void)createButtonForOne
 {
-    if (self.color_btnBG_prominent == nil)
-    {
-        self.color_btnBG_prominent = XB_Color_blue;
-    }
-    
     UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] font:XB_Font(18)];
     
     [button mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -262,7 +273,7 @@
             }
             
             make.leading.trailing.equalTo(self);
-            make.height.mas_equalTo(0.5);
+            make.height.mas_equalTo(1 / [UIScreen mainScreen].scale);
         }];
         
         UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + i title:self.arr_buttonTitles[i] font:XB_Font(18)];

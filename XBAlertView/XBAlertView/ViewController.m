@@ -22,13 +22,22 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    XBAlertView *alerView = [[XBAlertView alloc] initWithTitle:@"标题呵呵~" message:@"消息啦啦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@[]];
-//    alerView.color_btnBG_nor = [UIColor whiteColor];
-//    alerView.arr_prominentIndexs = @[@0];
-//    alerView.color_btnTitle_prominent = [UIColor redColor];
-//    alerView.color_btnTitle_nor = [UIColor purpleColor];
-//    alerView.color_btnBG_nor = [UIColor greenColor];
-//    alerView.color_btnBG_prominent = [UIColor orangeColor];
+    [self createAlert];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self createAlert];
+    });
+}
+
+- (void)createAlert
+{
+    XBAlertView *alerView = [[XBAlertView alloc] initWithTitle:@"标题呵呵~" message:@"消息啦啦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok",@"ee"]];
+    //    alerView.color_btnBG_nor = [UIColor whiteColor];
+//        alerView.arr_prominentIndexs = @[@0];
+        alerView.color_btnTitle_prominent = [UIColor redColor];
+//        alerView.color_btnTitle_nor = [UIColor purpleColor];
+//        alerView.color_btnBG_nor = [UIColor greenColor];
+        alerView.color_btnBG_prominent = [UIColor orangeColor];
     [alerView show];
 }
 
