@@ -20,14 +20,26 @@
 
 @property (nonatomic,strong) UILabel * _Nonnull lb_title;
 @property (nonatomic,strong) UILabel * _Nonnull lb_message;
+
+///自定义view的背景view，用来先占位置的
+@property (nonatomic,strong) UIView * _Nullable v_customViewBG;
 @property (nonatomic,strong) UIView * _Nullable v_custom;
 
+///分割线颜色
 @property (nonatomic,strong) UIColor * _Nullable color_partingLine;
 
-@property (nonatomic,copy) NSString * _Nullable str_title;
-@property (nonatomic,copy) NSString * _Nullable str_message;
+@property (nonatomic,copy,readonly) NSString * _Nullable str_title;
+@property (nonatomic,copy,readonly) NSString * _Nullable str_message;
 
-@property (nonatomic,strong) NSMutableArray * _Nullable arr_buttonTitles;
+@property (nonatomic,strong,readonly) NSMutableArray * _Nullable arr_buttonTitles;
+
+
+@property (nonatomic,strong) UIColor * _Nullable color_btnTitle_nor;
+@property (nonatomic,strong) UIColor * _Nullable color_btnTitle_prominent;
+@property (nonatomic,strong) UIColor * _Nullable color_btnBG_nor;
+@property (nonatomic,strong) UIColor * _Nullable color_btnBG_prominent;
+
+@property (nonatomic,strong) NSArray * _Nullable arr_prominentIndexs;
 
 @property (nonatomic,weak) _Nullable id<XBAlertViewDelegate> delegate;
 

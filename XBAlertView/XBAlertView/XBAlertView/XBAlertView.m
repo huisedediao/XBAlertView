@@ -13,12 +13,35 @@
 
 #define KSpaceToBorder (30)
 
-@interface XBAlertView ()
-///自定义view的背景view，用来先占位置的
-@property (nonatomic,strong) UIView *v_customViewBG;
-@end
-
 @implementation XBAlertView
+- (void)show
+{
+    [super show];
+    [self refreshUI];
+}
+- (void)refreshUI
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.arr_prominentIndexs.count)
+        {
+            for (UIView *tempV in self.subviews)
+            {
+                if ([tempV isKindOfClass:[UIButton class]])
+                {
+                    UIButton *btn = (UIButton *)tempV;
+                    for (NSNumber *numTemp in self.arr_prominentIndexs)
+                    {
+                        if ([numTemp integerValue] == btn.tag - kXBAlertViewTagBase)
+                        {
+                            [btn setTitleColor:[self getBtnTitleColorPirminent] forState:UIControlStateNormal];
+                            btn.backgroundColor = [self getBtnBGColorPirminent];
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -32,6 +55,7 @@
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.greaterThanOrEqualTo(@(KSpaceToBorder * 2));
         }];
+        _arr_buttonTitles = [NSMutableArray new];
     }
     return self;
 }
@@ -41,8 +65,8 @@
     UIWindow *window = [XBAlertViewManager shared].window;
     if (self = [super initWithDisplayView:window])
     {
-        self.str_title = title;
-        self.str_message = message;
+        _str_title = title;
+        _str_message = message;
         self.delegate = delegate;
         if (cancelButtonTitle.length)
         {
@@ -51,6 +75,18 @@
         if (otherButtonTitles.count)
         {
             [self.arr_buttonTitles addObjectsFromArray:otherButtonTitles];
+        }
+        switch (self.arr_buttonTitles.count)
+        {
+            case 1:
+                self.arr_prominentIndexs = @[@0];
+                break;
+            case 2:
+                self.arr_prominentIndexs = @[@1];
+                break;
+                
+            default:
+                break;
         }
     }
     return self;
@@ -139,7 +175,12 @@
 #pragma mark - 创建按钮
 - (void)createButtonForOne
 {
-    UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] bgColor:XB_Color_blue font:XB_Font(18) titleColor:[UIColor whiteColor]];
+    if (self.color_btnBG_prominent == nil)
+    {
+        self.color_btnBG_prominent = XB_Color_blue;
+    }
+    
+    UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] font:XB_Font(18)];
     
     [button mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
@@ -158,7 +199,7 @@
 }
 - (void)createButtonForTwo
 {
-    UIButton *button1 = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] bgColor:XB_Color_gray font:XB_Font(18) titleColor:XB_color_dark];
+    UIButton *button1 = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] font:XB_Font(18)];
     
     [button1 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
@@ -169,7 +210,7 @@
     }];
     
     
-    UIButton *button2 = [self createButtonWithTag:kXBAlertViewTagBase + 1 title:self.arr_buttonTitles[1] bgColor:XB_Color_blue font:XB_Font(18) titleColor:[UIColor whiteColor]];
+    UIButton *button2 = [self createButtonWithTag:kXBAlertViewTagBase + 1 title:self.arr_buttonTitles[1] font:XB_Font(18)];
     
     [button2 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(button1);
@@ -199,6 +240,11 @@
 }
 - (void)createButtonForThreeOrMore
 {
+    if (self.color_btnBG_nor == nil)
+    {
+        self.color_btnBG_nor = XB_Color_white;
+    }
+    
     UIView *lastView = nil;
     for (int i = 0; i < self.arr_buttonTitles.count; i++)
     {
@@ -221,7 +267,7 @@
             make.height.mas_equalTo(0.5);
         }];
         
-        UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + i title:self.arr_buttonTitles[i] bgColor:self.backgroundColor font:XB_Font(18)  titleColor:XB_Color_blue];
+        UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + i title:self.arr_buttonTitles[i] font:XB_Font(18)];
         
         [button mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(line.mas_bottom);
@@ -237,15 +283,15 @@
 }
 
 #pragma mark - 工厂方法
-- (UIButton *)createButtonWithTag:(NSInteger)tag title:(NSString *)title bgColor:(UIColor *)bgColor font:(UIFont *)font titleColor:(UIColor *)titleColor
+- (UIButton *)createButtonWithTag:(NSInteger)tag title:(NSString *)title font:(UIFont *)font
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:button];
     
     button.tag = tag;
     button.titleLabel.font = font;
-    button.backgroundColor = bgColor;
-    [button setTitleColor:titleColor forState:UIControlStateNormal];
+    button.backgroundColor = [self getBtnBGColorNor];
+    [button setTitleColor:[self getBtnTitleColorNor] forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -278,8 +324,22 @@
 {
     return self.v_custom ? 30 : 0;
 }
-
-
+- (UIColor *)getBtnTitleColorNor
+{
+    return self.color_btnTitle_nor ? self.color_btnTitle_nor : XB_color_dark;
+}
+- (UIColor *)getBtnTitleColorPirminent
+{
+    return self.color_btnTitle_prominent ? self.color_btnTitle_prominent : XB_Color_white;
+}
+- (UIColor *)getBtnBGColorNor
+{
+    return self.color_btnBG_nor ? self.color_btnBG_nor : XB_Color_gray;
+}
+- (UIColor *)getBtnBGColorPirminent
+{
+    return self.color_btnBG_prominent ? self.color_btnBG_prominent : XB_Color_blue;
+}
 
 
 #pragma mark - 懒加载
@@ -347,15 +407,6 @@
         _v_customViewBG = view;
     }
     return _v_customViewBG;
-}
-
-- (NSMutableArray *)arr_buttonTitles
-{
-    if (_arr_buttonTitles == nil)
-    {
-        _arr_buttonTitles = [NSMutableArray new];
-    }
-    return _arr_buttonTitles;
 }
 
 @end
