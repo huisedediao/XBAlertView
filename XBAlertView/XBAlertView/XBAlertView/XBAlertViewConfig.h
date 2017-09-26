@@ -11,7 +11,7 @@
 
 #define kXBAlertViewTagBase (10010)
 #define kXBAlertViewButtonHeight (50)
-
+#define KSpaceToBorder (30)
 //屏幕宽高
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height

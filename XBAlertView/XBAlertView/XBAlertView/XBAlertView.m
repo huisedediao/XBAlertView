@@ -11,8 +11,6 @@
 #import "XBAlertViewConfig.h"
 #import "XBAlertViewManager.h"
 
-#define KSpaceToBorder (30)
-
 @implementation XBAlertView
 - (void)show
 {
