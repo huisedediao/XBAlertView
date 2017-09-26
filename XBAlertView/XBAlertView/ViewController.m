@@ -22,9 +22,9 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    XBAlertView *alerView = [[XBAlertView alloc] initWithTitle:@"标题呵呵~" message:@"消息啦啦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]];
+    XBAlertView *alerView = [[XBAlertView alloc] initWithTitle:@"标题呵呵~" message:@"消息啦啦~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@[]];
 //    alerView.color_btnBG_nor = [UIColor whiteColor];
-    alerView.arr_prominentIndexs = @[@0];
+//    alerView.arr_prominentIndexs = @[@0];
 //    alerView.color_btnTitle_prominent = [UIColor redColor];
 //    alerView.color_btnTitle_nor = [UIColor purpleColor];
 //    alerView.color_btnBG_nor = [UIColor greenColor];
