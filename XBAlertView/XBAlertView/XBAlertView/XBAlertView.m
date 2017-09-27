@@ -23,32 +23,39 @@
 }
 - (void)refreshUI
 {
-    if (self.subviews.count)
+    BOOL hasButton = NO;
+    for (UIView *tempV in self.subviews)
     {
-        if (self.arr_prominentIndexs.count)
+        if ([tempV isKindOfClass:[UIButton class]])
         {
-            for (UIView *tempV in self.subviews)
-            {
-                if ([tempV isKindOfClass:[UIButton class]])
-                {
-                    UIButton *btn = (UIButton *)tempV;
-                    for (NSNumber *numTemp in self.arr_prominentIndexs)
-                    {
-                        if ([numTemp integerValue] == btn.tag - kXBAlertViewTagBase)
-                        {
-                            [btn setTitleColor:[self getBtnTitleColorPirminent] forState:UIControlStateNormal];
-                            btn.backgroundColor = [self getBtnBGColorPirminent];
-                        }
-                    }
-                }
-            }
+            hasButton = YES;
+            break;
         }
     }
-    else
+    if (hasButton == NO)
     {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self refreshUI];
         });
+    }
+    
+    if (self.arr_prominentIndexs.count)
+    {
+        for (UIView *tempV in self.subviews)
+        {
+            if ([tempV isKindOfClass:[UIButton class]])
+            {
+                UIButton *btn = (UIButton *)tempV;
+                for (NSNumber *numTemp in self.arr_prominentIndexs)
+                {
+                    if ([numTemp integerValue] == btn.tag - kXBAlertViewTagBase)
+                    {
+                        [btn setTitleColor:[self getBtnTitleColorPirminent] forState:UIControlStateNormal];
+                        btn.backgroundColor = [self getBtnBGColorPirminent];
+                    }
+                }
+            }
+        }
     }
 }
 
