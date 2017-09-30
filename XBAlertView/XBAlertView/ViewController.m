@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 #import "XBAlertView.h"
+#import "XBAlertView_progress.h"
 
 @interface ViewController () <XBAlertViewDelegate>
-
+@property (nonatomic,strong) XBAlertView_progress *xbv_progress;
 @end
 
 @implementation ViewController
@@ -22,11 +23,19 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self createAlert];
+    [self createProgress];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self createAlert];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.xbv_progress hidden];
+            [self createAlert];
+        });
     });
+}
+
+- (void)createProgress
+{
+    [self.xbv_progress = [[XBAlertView_progress alloc] initWithTitle:@"D11_Text_Reminder" message:@"D11_Text_PleaseTriggerTheAccessory" delegate:self cancelButtonTitle:@"D11_Text_Cancel" otherButtonTitles:nil] show];
 }
 
 - (void)createAlert

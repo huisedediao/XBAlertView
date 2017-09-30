@@ -27,64 +27,59 @@
 
 - (void)logShow
 {
-    @synchronized (self)
+    if ([self isKindOfClass:NSClassFromString(@"XBAlertView")] == false)
     {
-        if ([self isKindOfClass:NSClassFromString(@"XBAlertView")] == false)
-        {
-            [self logShow];
-            return;
-        }
-        [[UIApplication sharedApplication].delegate window].userInteractionEnabled = NO;
-        [XBAlertViewManager shared].window.hidden = NO;
-        
-        XBAlertViewBase *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
-        [alertView logHidden];
-        [[XBAlertViewManager shared].arrM_alertViews addObject:self];
-        
-        CGFloat time = 0;
-        if (alertView)
-        {
-            time = KAnimationTime;
-        }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [XBAlertViewManager shared].b_keepShow = YES;
-            [self logShow];
-        });
+        [self logShow];
+        return;
     }
+    [[UIApplication sharedApplication].delegate window].userInteractionEnabled = NO;
+    [XBAlertViewManager shared].window.hidden = NO;
+    
+    XBAlertViewBase *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
+    [alertView logHidden];
+    [[XBAlertViewManager shared].arrM_alertViews addObject:self];
+    
+    CGFloat timeSpace = [[NSDate date] timeIntervalSince1970] - [XBAlertViewManager shared].lastAlertViewHideTime;
+    CGFloat time = 0;
+    if (timeSpace < KAnimationTime)
+    {
+        time = KAnimationTime;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [XBAlertViewManager shared].b_keepShow = YES;
+        [self logShow];
+    });
 }
 - (void)logHidden
 {
-    @synchronized (self)
+    if ([self isKindOfClass:NSClassFromString(@"XBAlertView")] == false)
     {
-        if ([self isKindOfClass:NSClassFromString(@"XBAlertView")] == false)
-        {
-            [self logHidden];
-            return;
-        }
         [self logHidden];
-        [XBAlertViewManager shared].b_keepShow = NO;
-        NSMutableArray *arrM_alertViews = [XBAlertViewManager shared].arrM_alertViews;
-
-        if (arrM_alertViews.count > 0)
-        {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self == arrM_alertViews.lastObject)
-                {
-                    [arrM_alertViews removeObject:self];
-                }
-                [[arrM_alertViews lastObject] logShow];
-            });
-        }
-        else
-        {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if ([XBAlertViewManager shared].b_keepShow == NO)
-                {
-                    [XBAlertViewManager shared].window.hidden = YES;
-                    [[UIApplication sharedApplication].delegate window].userInteractionEnabled = YES;
-                }
-            });
-        }
+        return;
+    }
+    [self logHidden];
+    [XBAlertViewManager shared].lastAlertViewHideTime = [[NSDate date] timeIntervalSince1970];
+    [XBAlertViewManager shared].b_keepShow = NO;
+    NSMutableArray *arrM_alertViews = [XBAlertViewManager shared].arrM_alertViews;
+    if (self == arrM_alertViews.lastObject)
+    {
+        [arrM_alertViews removeObject:self];
+    }
+    if (arrM_alertViews.count > 0)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[arrM_alertViews lastObject] logShow];
+        });
+    }
+    else
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if ([XBAlertViewManager shared].b_keepShow == NO)
+            {
+                [XBAlertViewManager shared].window.hidden = YES;
+                [[UIApplication sharedApplication].delegate window].userInteractionEnabled = YES;
+            }
+        });
     }
 }
 @end

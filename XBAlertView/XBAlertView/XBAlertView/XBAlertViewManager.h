@@ -11,11 +11,13 @@
 
 @interface XBAlertViewManager : NSObject
 
-@property (nonatomic, strong) NSMutableArray *arrM_alertViews;
+@property (atomic,strong) NSMutableArray *arrM_alertViews;
 
 @property (nonatomic,strong) UIWindow *window;
 
 @property (atomic,assign) BOOL b_keepShow;
+
+@property (atomic,assign) NSTimeInterval lastAlertViewHideTime;
 
 + (instancetype)shared;
 

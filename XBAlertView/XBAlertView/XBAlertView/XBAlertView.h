@@ -13,6 +13,8 @@
 @protocol XBAlertViewDelegate <NSObject>
 
 - (void)alertView:(XBAlertView *_Nullable)alertView clickedBtnAtIndex:(NSInteger)btnIndex;
+@optional
+- (void)alertViewDidEndAnimation:(XBAlertView *_Nullable)alertView;
 
 @end
 

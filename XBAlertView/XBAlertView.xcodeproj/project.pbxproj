@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F1463A681F4C08EC0053135F /* XBAlertViewBase+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = F1463A671F4C08EC0053135F /* XBAlertViewBase+Queue.m */; };
+		F14717561F7F8C8900FDC5DA /* XBCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14717541F7F8C8900FDC5DA /* XBCircleProgressView.m */; };
+		F147175B1F7F8D4300FDC5DA /* UIColor+Extern.m in Sources */ = {isa = PBXBuildFile; fileRef = F147175A1F7F8D4300FDC5DA /* UIColor+Extern.m */; };
+		F147175E1F7F8DE500FDC5DA /* XBAlertView_progress.m in Sources */ = {isa = PBXBuildFile; fileRef = F147175D1F7F8DE500FDC5DA /* XBAlertView_progress.m */; };
 		F14909DD1F4537120013C38B /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = F14909DC1F4537120013C38B /* UIView+Animation.m */; };
 		F1490A251F45CC610013C38B /* XBAlertView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = F1490A201F45CC610013C38B /* XBAlertView+Block.m */; };
 		F1490A271F45CC610013C38B /* XBAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1490A241F45CC610013C38B /* XBAlertViewManager.m */; };
@@ -54,6 +57,14 @@
 /* Begin PBXFileReference section */
 		F1463A661F4C08EC0053135F /* XBAlertViewBase+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XBAlertViewBase+Queue.h"; sourceTree = "<group>"; };
 		F1463A671F4C08EC0053135F /* XBAlertViewBase+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XBAlertViewBase+Queue.m"; sourceTree = "<group>"; };
+		F14717531F7F8C8900FDC5DA /* XBCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBCircleProgressView.h; sourceTree = "<group>"; };
+		F14717541F7F8C8900FDC5DA /* XBCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBCircleProgressView.m; sourceTree = "<group>"; };
+		F14717551F7F8C8900FDC5DA /* XBCircleProgressViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBCircleProgressViewConfig.h; sourceTree = "<group>"; };
+		F14717581F7F8D2200FDC5DA /* XBHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBHeader.h; sourceTree = "<group>"; };
+		F14717591F7F8D4300FDC5DA /* UIColor+Extern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extern.h"; sourceTree = "<group>"; };
+		F147175A1F7F8D4300FDC5DA /* UIColor+Extern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extern.m"; sourceTree = "<group>"; };
+		F147175C1F7F8DE500FDC5DA /* XBAlertView_progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAlertView_progress.h; sourceTree = "<group>"; };
+		F147175D1F7F8DE500FDC5DA /* XBAlertView_progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAlertView_progress.m; sourceTree = "<group>"; };
 		F14909DB1F4537120013C38B /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
 		F14909DC1F4537120013C38B /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		F1490A1F1F45CC610013C38B /* XBAlertView+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XBAlertView+Block.h"; sourceTree = "<group>"; };
@@ -136,9 +147,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F14717521F7F8C8900FDC5DA /* XBCircleProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				F147175C1F7F8DE500FDC5DA /* XBAlertView_progress.h */,
+				F147175D1F7F8DE500FDC5DA /* XBAlertView_progress.m */,
+				F14717531F7F8C8900FDC5DA /* XBCircleProgressView.h */,
+				F14717541F7F8C8900FDC5DA /* XBCircleProgressView.m */,
+				F14717551F7F8C8900FDC5DA /* XBCircleProgressViewConfig.h */,
+			);
+			path = XBCircleProgressView;
+			sourceTree = "<group>";
+		};
 		F1FF69AC1F3070FE001EC42A = {
 			isa = PBXGroup;
 			children = (
+				F14717591F7F8D4300FDC5DA /* UIColor+Extern.h */,
+				F147175A1F7F8D4300FDC5DA /* UIColor+Extern.m */,
+				F14717581F7F8D2200FDC5DA /* XBHeader.h */,
+				F14717521F7F8C8900FDC5DA /* XBCircleProgressView */,
 				F1FF69F81F30716C001EC42A /* Masonry */,
 				F1FF69EB1F307116001EC42A /* XBAlertViewBase */,
 				F1FF69B71F3070FE001EC42A /* XBAlertView */,
@@ -398,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1FF6A131F30716C001EC42A /* MASConstraint.m in Sources */,
+				F147175B1F7F8D4300FDC5DA /* UIColor+Extern.m in Sources */,
 				F1FF6A161F30716C001EC42A /* MASViewAttribute.m in Sources */,
 				F1463A681F4C08EC0053135F /* XBAlertViewBase+Queue.m in Sources */,
 				F1FF6A1B1F30716C001EC42A /* ViewController+MASAdditions.m in Sources */,
@@ -408,10 +436,12 @@
 				F14909DD1F4537120013C38B /* UIView+Animation.m in Sources */,
 				F1FF6A151F30716C001EC42A /* MASLayoutConstraint.m in Sources */,
 				F1FF69C01F3070FE001EC42A /* ViewController.m in Sources */,
+				F14717561F7F8C8900FDC5DA /* XBCircleProgressView.m in Sources */,
 				F1490A251F45CC610013C38B /* XBAlertView+Block.m in Sources */,
 				F1FF69F71F307141001EC42A /* UIView+AdaptKeyboard.m in Sources */,
 				F1FF6A1A1F30716C001EC42A /* View+MASAdditions.m in Sources */,
 				F1FF6A121F30716C001EC42A /* MASCompositeConstraint.m in Sources */,
+				F147175E1F7F8DE500FDC5DA /* XBAlertView_progress.m in Sources */,
 				F1FF6A191F30716C001EC42A /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				F1FF6A141F30716C001EC42A /* MASConstraintMaker.m in Sources */,
 				F1FF69F41F30712C001EC42A /* XBAlertView.m in Sources */,
