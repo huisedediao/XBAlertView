@@ -39,12 +39,13 @@
     [alertView logHidden];
     [[XBAlertViewManager shared].arrM_alertViews addObject:self];
     
-    CGFloat timeSpace = [[NSDate date] timeIntervalSince1970] - [XBAlertViewManager shared].lastAlertViewHideTime;
+    CGFloat timeSpace = [[NSDate date] timeIntervalSince1970] - [XBAlertViewManager shared].lastAlertViewHideOrShowTime;
     CGFloat time = 0;
     if (timeSpace < KAnimationTime)
     {
         time = KAnimationTime;
     }
+    [XBAlertViewManager shared].lastAlertViewHideOrShowTime = [[NSDate date] timeIntervalSince1970];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [XBAlertViewManager shared].b_keepShow = YES;
         [self logShow];
@@ -58,7 +59,7 @@
         return;
     }
     [self logHidden];
-    [XBAlertViewManager shared].lastAlertViewHideTime = [[NSDate date] timeIntervalSince1970];
+    [XBAlertViewManager shared].lastAlertViewHideOrShowTime = [[NSDate date] timeIntervalSince1970];
     [XBAlertViewManager shared].b_keepShow = NO;
     NSMutableArray *arrM_alertViews = [XBAlertViewManager shared].arrM_alertViews;
     if (self == arrM_alertViews.lastObject)

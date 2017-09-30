@@ -17,7 +17,7 @@
 
 @property (atomic,assign) BOOL b_keepShow;
 
-@property (atomic,assign) NSTimeInterval lastAlertViewHideTime;
+@property (atomic,assign) NSTimeInterval lastAlertViewHideOrShowTime;
 
 + (instancetype)shared;
 
