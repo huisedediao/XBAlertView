@@ -276,11 +276,11 @@
 #pragma mark - 点击事件
 - (void)btnClick:(UIButton *)button
 {
+    [self hidden];
     if (self.delegate && [self.delegate respondsToSelector:@selector(alertView:clickedBtnAtIndex:)])
     {
         [self.delegate alertView:self clickedBtnAtIndex:button.tag - kXBAlertViewTagBase];
     }
-    [self hidden];
 }
 
 

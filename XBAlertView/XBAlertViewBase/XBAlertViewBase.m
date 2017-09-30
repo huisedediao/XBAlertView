@@ -154,26 +154,29 @@
 
 -(void)show
 {
-    NSLog(@"AlertViewBase_show");
-    [self controlDisplayViewUserInteractionEnabled];
-    [self fixSuperView];
-    [self actionBeforeShow];
-    [self setInitLayout];
-    
-    self.backgroundView.hidden=NO;
-    self.hidden=NO;
-    
-    if (self.animating)
+    if (_isShowState == NO)
     {
-        [UIView animateWithDuration:self.duration animations:^{
+        NSLog(@"AlertViewBase_show");
+        [self controlDisplayViewUserInteractionEnabled];
+        [self fixSuperView];
+        [self actionBeforeShow];
+        [self setInitLayout];
+        
+        self.backgroundView.hidden=NO;
+        self.hidden=NO;
+        
+        if (self.animating)
+        {
+            [UIView animateWithDuration:self.duration animations:^{
+                [self sameDemoOfShow];
+            }];
+        }
+        else
+        {
             [self sameDemoOfShow];
-        }];
+        }
+        _isShowState=YES;
     }
-    else
-    {
-        [self sameDemoOfShow];
-    }
-    _isShowState=YES;
 }
 -(void)sameDemoOfShow
 {
@@ -217,26 +220,29 @@
 
 -(void)hidden
 {
-    NSLog(@"AlertViewBase_hidden");
-    [self fixSuperView];
-    [self controlDisplayViewUserInteractionEnabled];
-    if(self.animating)
+    if (_isShowState)
     {
-        [UIView animateWithDuration:self.duration animations:^{
-            [self setInitLayout];
-        } completion:^(BOOL finished) {
+        NSLog(@"AlertViewBase_hidden");
+        [self fixSuperView];
+        [self controlDisplayViewUserInteractionEnabled];
+        if(self.animating)
+        {
+            [UIView animateWithDuration:self.duration animations:^{
+                [self setInitLayout];
+            } completion:^(BOOL finished) {
+                [self sameDemoOfHidden];
+            }];
+        }
+        else
+        {
             [self sameDemoOfHidden];
-        }];
+        }
+        _isShowState=NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KDisplayViewDidableTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self removeFromSuperview];
+            [self.backgroundView removeFromSuperview];
+        });
     }
-    else
-    {
-        [self sameDemoOfHidden];
-    }
-    _isShowState=NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KDisplayViewDidableTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self removeFromSuperview];
-        [self.backgroundView removeFromSuperview];
-    });
 }
 //设置初始位置(隐藏时的位置)
 -(void)setInitLayout

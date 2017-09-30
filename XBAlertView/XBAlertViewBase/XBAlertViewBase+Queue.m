@@ -64,19 +64,20 @@
         [self logHidden];
         [XBAlertViewManager shared].b_keepShow = NO;
         NSMutableArray *arrM_alertViews = [XBAlertViewManager shared].arrM_alertViews;
-        if (self == arrM_alertViews.lastObject)
-        {
-            [arrM_alertViews removeObject:self];
-        }
+
         if (arrM_alertViews.count > 0)
         {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * 0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (self == arrM_alertViews.lastObject)
+                {
+                    [arrM_alertViews removeObject:self];
+                }
                 [[arrM_alertViews lastObject] logShow];
             });
         }
         else
         {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if ([XBAlertViewManager shared].b_keepShow == NO)
                 {
                     [XBAlertViewManager shared].window.hidden = YES;
