@@ -16,48 +16,6 @@
 @end
 
 @implementation XBAlertView
-- (void)show
-{
-    [super show];
-    [self refreshUI];
-}
-- (void)refreshUI
-{
-    BOOL hasButton = NO;
-    for (UIView *tempV in self.subviews)
-    {
-        if ([tempV isKindOfClass:[UIButton class]])
-        {
-            hasButton = YES;
-            break;
-        }
-    }
-    if (hasButton == NO)
-    {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self refreshUI];
-        });
-    }
-    
-    if (self.arr_prominentIndexs.count)
-    {
-        for (UIView *tempV in self.subviews)
-        {
-            if ([tempV isKindOfClass:[UIButton class]])
-            {
-                UIButton *btn = (UIButton *)tempV;
-                for (NSNumber *numTemp in self.arr_prominentIndexs)
-                {
-                    if ([numTemp integerValue] == btn.tag - kXBAlertViewTagBase)
-                    {
-                        [btn setTitleColor:[self getBtnTitleColorPirminent] forState:UIControlStateNormal];
-                        btn.backgroundColor = [self getBtnBGColorPirminent];
-                    }
-                }
-            }
-        }
-    }
-}
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -134,7 +92,6 @@
 
 
 #pragma mark - 方法重写
-
 - (void)actionBeforeShow
 {
     if (self.actionBeforeShowRunned == YES)
@@ -196,7 +153,8 @@
 #pragma mark - 创建按钮
 - (void)createButtonForOne
 {
-    UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] font:XB_Font(18)];
+    NSInteger tag = 0;
+    UIButton *button = [self createButtonWithTag:tag];
     
     [button mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
@@ -215,7 +173,8 @@
 }
 - (void)createButtonForTwo
 {
-    UIButton *button1 = [self createButtonWithTag:kXBAlertViewTagBase + 0 title:self.arr_buttonTitles[0] font:XB_Font(18)];
+    NSInteger tag_1 = 0;
+    UIButton *button1 = [self createButtonWithTag:tag_1];
     
     [button1 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
@@ -225,8 +184,8 @@
         make.bottom.lessThanOrEqualTo(self).offset(0);
     }];
     
-    
-    UIButton *button2 = [self createButtonWithTag:kXBAlertViewTagBase + 1 title:self.arr_buttonTitles[1] font:XB_Font(18)];
+    NSInteger tag_2 = 1;
+    UIButton *button2 = [self createButtonWithTag:tag_2];
     
     [button2 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(button1);
@@ -283,7 +242,7 @@
             make.height.mas_equalTo(1 / [UIScreen mainScreen].scale);
         }];
         
-        UIButton *button = [self createButtonWithTag:kXBAlertViewTagBase + i title:self.arr_buttonTitles[i] font:XB_Font(18)];
+        UIButton *button = [self createButtonWithTag:i];
         
         [button mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(line.mas_bottom);
@@ -299,21 +258,20 @@
 }
 
 #pragma mark - 工厂方法
-- (UIButton *)createButtonWithTag:(NSInteger)tag title:(NSString *)title font:(UIFont *)font
+- (UIButton *)createButtonWithTag:(NSInteger)tag
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:button];
     
-    button.tag = tag;
-    button.titleLabel.font = font;
-    button.backgroundColor = [self getBtnBGColorNor];
-    [button setTitleColor:[self getBtnTitleColorNor] forState:UIControlStateNormal];
-    [button setTitle:title forState:UIControlStateNormal];
+    button.tag = tag + kXBAlertViewTagBase;
+    button.titleLabel.font = XB_Font(18);
+    button.backgroundColor = [self getBtnBgColorWithTag:tag];
+    [button setTitleColor:[self getBtnTitleColorWithTag:tag] forState:UIControlStateNormal];
+    [button setTitle:self.arr_buttonTitles[tag] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return button;
 }
-
 
 #pragma mark - 点击事件
 - (void)btnClick:(UIButton *)button
@@ -356,7 +314,28 @@
 {
     return self.color_btnBG_prominent ? self.color_btnBG_prominent : XB_Color_blue;
 }
-
+- (UIColor *)getBtnBgColorWithTag:(NSInteger)tag
+{
+    for (NSNumber *number in self.arr_prominentIndexs)
+    {
+        if ([number integerValue]== tag)
+        {
+            return [self getBtnBGColorPirminent];
+        }
+    }
+    return [self getBtnBGColorNor];
+}
+- (UIColor *)getBtnTitleColorWithTag:(NSInteger)tag
+{
+    for (NSNumber *number in self.arr_prominentIndexs)
+    {
+        if ([number integerValue]== tag)
+        {
+            return [self getBtnTitleColorPirminent];
+        }
+    }
+    return [self getBtnTitleColorNor];
+}
 
 #pragma mark - 懒加载
 
