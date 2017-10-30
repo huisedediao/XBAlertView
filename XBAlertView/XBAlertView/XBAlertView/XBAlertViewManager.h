@@ -15,10 +15,6 @@
 
 @property (nonatomic,strong) UIWindow *window;
 
-@property (atomic,assign) BOOL b_keepShow;
-
-@property (atomic,assign) NSTimeInterval lastAlertViewHideOrShowTime;
-
 + (instancetype)shared;
 
 @end

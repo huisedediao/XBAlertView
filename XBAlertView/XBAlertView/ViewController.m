@@ -23,14 +23,22 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self createProgress];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.xbv_progress hidden];
-            [self createAlert];
-        });
-    });
+    for (int i =0; i < 5; i++)
+    {
+        [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+    }
+    
+    [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+    
+//    [self createProgress];
+
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////            [self.xbv_progress hidden];
+//            [self createAlert];
+//        });
+//    });
 }
 
 - (void)createProgress
@@ -53,7 +61,7 @@
 - (void)alertView:(XBAlertView *)alertView clickedBtnAtIndex:(NSInteger)btnIndex
 {
     NSLog(@"%zd",btnIndex);
-    [self createAlert];
+//    [self createAlert];
 }
 
 @end

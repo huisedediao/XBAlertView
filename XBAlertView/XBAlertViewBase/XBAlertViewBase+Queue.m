@@ -10,8 +10,6 @@
 #import <objc/message.h>
 #import "XBAlertViewManager.h"
 
-#define KAnimationTime (0.25)
-
 @implementation XBAlertViewBase (Queue)
 
 + (void)load
@@ -33,23 +31,13 @@
         return;
     }
     [[UIApplication sharedApplication].delegate window].userInteractionEnabled = NO;
-    [XBAlertViewManager shared].window.hidden = NO;
+    [XBAlertViewManager shared].window.alpha = 1;
     
     XBAlertViewBase *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
     [alertView logHidden];
-    [[XBAlertViewManager shared].arrM_alertViews addObject:self];
     
-    CGFloat timeSpace = [[NSDate date] timeIntervalSince1970] - [XBAlertViewManager shared].lastAlertViewHideOrShowTime;
-    CGFloat time = 0;
-    if (timeSpace < KAnimationTime)
-    {
-        time = KAnimationTime;
-    }
-    [XBAlertViewManager shared].lastAlertViewHideOrShowTime = [[NSDate date] timeIntervalSince1970];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [XBAlertViewManager shared].b_keepShow = YES;
-        [self logShow];
-    });
+    [[XBAlertViewManager shared].arrM_alertViews addObject:self];
+    [self logShow];
 }
 - (void)logHidden
 {
@@ -59,28 +47,23 @@
         return;
     }
     [self logHidden];
-    [XBAlertViewManager shared].lastAlertViewHideOrShowTime = [[NSDate date] timeIntervalSince1970];
-    [XBAlertViewManager shared].b_keepShow = NO;
+    
     NSMutableArray *arrM_alertViews = [XBAlertViewManager shared].arrM_alertViews;
     if (self == arrM_alertViews.lastObject)
     {
         [arrM_alertViews removeObject:self];
     }
+    
     if (arrM_alertViews.count > 0)
     {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[arrM_alertViews lastObject] logShow];
-        });
+        [[arrM_alertViews lastObject] logShow];
     }
     else
     {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationTime * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if ([XBAlertViewManager shared].b_keepShow == NO)
-            {
-                [XBAlertViewManager shared].window.hidden = YES;
-                [[UIApplication sharedApplication].delegate window].userInteractionEnabled = YES;
-            }
-        });
+        [UIView animateWithDuration:0.5 animations:^{
+            [XBAlertViewManager shared].window.alpha = 0;
+        }];
+        [[UIApplication sharedApplication].delegate window].userInteractionEnabled = YES;
     }
 }
 @end
