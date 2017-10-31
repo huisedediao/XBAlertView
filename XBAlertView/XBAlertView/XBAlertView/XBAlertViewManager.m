@@ -18,6 +18,7 @@
 @interface XBAlertViewManager ()
 {
     CGFloat lastAngle;
+    NSLock *_lock;
 }
 @end
 
@@ -44,6 +45,7 @@
         dispatch_once(&onceToken, ^{
             [self addNoticeAtInit_base];
             _arrM_alertViews = [NSMutableArray new];
+            _lock = [NSLock new];
         });
     }
     return self;
@@ -107,6 +109,7 @@
 
 - (UIWindow *)window
 {
+    [_lock lock];
     if (_window == nil)
     {
         UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, MIN(kScreenWidth, kScreenHeight), MAX(kScreenWidth, kScreenHeight))];
@@ -119,6 +122,7 @@
         
         [self deviceOrientationDidChange:nil];
     }
+    [_lock unlock];
     return _window;
 }
 

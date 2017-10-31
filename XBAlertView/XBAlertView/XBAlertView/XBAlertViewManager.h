@@ -15,6 +15,8 @@
 
 @property (nonatomic,strong) UIWindow *window;
 
+@property (atomic,strong) UIWindow *oldKeyWindow;
+
 + (instancetype)shared;
 
 @end

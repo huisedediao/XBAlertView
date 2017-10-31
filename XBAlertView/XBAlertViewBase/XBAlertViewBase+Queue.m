@@ -30,8 +30,15 @@
         [self logShow];
         return;
     }
-    [[UIApplication sharedApplication].delegate window].userInteractionEnabled = NO;
-    [[XBAlertViewManager shared].window makeKeyWindow];
+    
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    if (keyWindow != [XBAlertViewManager shared].window)
+    {
+        keyWindow.userInteractionEnabled = NO;
+        [XBAlertViewManager shared].oldKeyWindow = keyWindow;
+        [[XBAlertViewManager shared].window makeKeyWindow];
+    }
+    
     [XBAlertViewManager shared].window.alpha = 1;
     
     XBAlertViewBase *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
@@ -65,8 +72,8 @@
         [UIView animateWithDuration:0.5 animations:^{
             [XBAlertViewManager shared].window.alpha = 0;
         }];
-        [[[UIApplication sharedApplication].delegate window] makeKeyWindow];
-        [[UIApplication sharedApplication].delegate window].userInteractionEnabled = YES;
+        [[XBAlertViewManager shared].oldKeyWindow makeKeyWindow];
+        [XBAlertViewManager shared].oldKeyWindow.userInteractionEnabled = YES;
     }
 }
 @end
