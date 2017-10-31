@@ -31,6 +31,8 @@
     
     [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
     
+    [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+    
 //    [self createProgress];
 
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

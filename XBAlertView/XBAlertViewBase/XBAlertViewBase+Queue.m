@@ -34,10 +34,11 @@
     [XBAlertViewManager shared].window.alpha = 1;
     
     XBAlertViewBase *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
-    [alertView logHidden];
     
     [[XBAlertViewManager shared].arrM_alertViews addObject:self];
     [self logShow];
+    
+    [alertView logHidden];
 }
 - (void)logHidden
 {

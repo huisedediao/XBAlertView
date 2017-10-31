@@ -121,16 +121,14 @@
     
     self.showLayoutBlock = ^(XBAlertViewBase *alertView) {
         [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(alertView.superview).offset(30);
-            make.trailing.equalTo(alertView.superview).offset(-30);
+            make.width.mas_equalTo(280);
             make.center.equalTo(alertView.superview);
         }];
     };
     
     self.hiddenLayoutBlock = ^(XBAlertViewBase *alertView) {
         [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(alertView.superview).offset(30);
-            make.trailing.equalTo(alertView.superview).offset(-30);
+            make.width.mas_equalTo(280);
             make.center.equalTo(alertView.superview);
         }];
     };

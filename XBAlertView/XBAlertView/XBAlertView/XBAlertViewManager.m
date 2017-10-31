@@ -43,6 +43,7 @@
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             [self addNoticeAtInit_base];
+            _arrM_alertViews = [NSMutableArray new];
         });
     }
     return self;
@@ -120,13 +121,6 @@
     }
     return _window;
 }
-- (NSMutableArray *)arrM_alertViews
-{
-    if (_arrM_alertViews == nil)
-    {
-        _arrM_alertViews = [NSMutableArray new];
-    }
-    return _arrM_alertViews;
-}
+
 
 @end
