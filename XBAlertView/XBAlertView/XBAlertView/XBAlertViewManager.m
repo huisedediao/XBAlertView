@@ -115,7 +115,6 @@
         UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, MIN(kScreenWidth, kScreenHeight), MAX(kScreenWidth, kScreenHeight))];
         window.windowLevel = 2000;
         window.hidden = NO;
-        [window makeKeyWindow];
         window.backgroundColor = [UIColor clearColor];
         
         _window = window;
