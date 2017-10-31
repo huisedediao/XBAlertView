@@ -31,6 +31,7 @@
         return;
     }
     [[UIApplication sharedApplication].delegate window].userInteractionEnabled = NO;
+    [[XBAlertViewManager shared].window makeKeyWindow];
     [XBAlertViewManager shared].window.alpha = 1;
     
     XBAlertViewBase *alertView = [XBAlertViewManager shared].arrM_alertViews.lastObject;
@@ -64,6 +65,7 @@
         [UIView animateWithDuration:0.5 animations:^{
             [XBAlertViewManager shared].window.alpha = 0;
         }];
+        [[[UIApplication sharedApplication].delegate window] makeKeyWindow];
         [[UIApplication sharedApplication].delegate window].userInteractionEnabled = YES;
     }
 }
