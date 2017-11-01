@@ -74,6 +74,7 @@
         }];
         [[XBAlertViewManager shared].oldKeyWindow makeKeyWindow];
         [XBAlertViewManager shared].oldKeyWindow.userInteractionEnabled = YES;
+        [XBAlertViewManager shared].oldKeyWindow = nil;
     }
 }
 @end
