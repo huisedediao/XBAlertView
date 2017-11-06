@@ -263,7 +263,8 @@
     
     button.tag = tag + kXBAlertViewTagBase;
     button.titleLabel.font = XB_Font(18);
-    button.backgroundColor = [self getBtnBgColorWithTag:tag];
+    [button setBackgroundImage:[self createImageWithColor:[self getBtnBgColorWithTag:tag]] forState:UIControlStateNormal];
+    [button setBackgroundImage:[self createImageWithColor:[[self getBtnBgColorWithTag:tag] colorWithAlphaComponent:0.6]] forState:UIControlStateHighlighted];
     [button setTitleColor:[self getBtnTitleColorWithTag:tag] forState:UIControlStateNormal];
     [button setTitle:self.arr_buttonTitles[tag] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -334,6 +335,20 @@
     }
     return [self getBtnTitleColorNor];
 }
+
+#pragma mark - 其他方法
+- (UIImage *)createImageWithColor:(UIColor*)color
+{
+    CGRect rect=CGRectMake(0.0f,0.0f,1.0f,1.0f);UIGraphicsBeginImageContext(rect.size);
+    
+    CGContextRef context=UIGraphicsGetCurrentContext();CGContextSetFillColorWithColor(context, [color CGColor]);
+    
+    CGContextFillRect(context, rect);
+    
+    UIImage*theImage=UIGraphicsGetImageFromCurrentImageContext();UIGraphicsEndImageContext();
+    return theImage;
+}
+
 
 #pragma mark - 懒加载
 
