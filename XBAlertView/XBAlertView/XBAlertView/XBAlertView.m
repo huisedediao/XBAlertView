@@ -156,6 +156,7 @@
     
     [button mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
+        make.top.greaterThanOrEqualTo(self.lb_title.mas_bottom).offset(25);
         make.leading.trailing.equalTo(self);
         make.height.mas_equalTo(kXBAlertViewButtonHeight);
         make.bottom.lessThanOrEqualTo(self).offset(0);
@@ -176,6 +177,7 @@
     
     [button1 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
+        make.top.greaterThanOrEqualTo(self.lb_title.mas_bottom).offset(25);
         make.leading.equalTo(self);
         make.trailing.equalTo(self.mas_centerX);
         make.height.mas_equalTo(kXBAlertViewButtonHeight);
@@ -230,6 +232,7 @@
             if (i == 0)
             {
                 make.top.equalTo(self.v_customViewBG.mas_bottom).offset([self getSpaceOfCustomViewAndButton]);
+                make.top.greaterThanOrEqualTo(self.lb_title.mas_bottom).offset(25);
             }
             else
             {

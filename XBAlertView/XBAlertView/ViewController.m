@@ -26,12 +26,12 @@
     
     for (int i =0; i < 5; i++)
     {
-        [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+        [[[XBAlertView alloc] initWithTitle:@"heheda" message:nil delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
     }
-    
-    [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
-    
-    [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+//    
+//    [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+//    
+//    [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
     
 //    [self createProgress];
 
