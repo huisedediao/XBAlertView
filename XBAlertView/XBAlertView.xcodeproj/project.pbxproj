@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F134C4CE209AADC0006CCC3E /* XBAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F134C4CC209AADC0006CCC3E /* XBAlertViewManager.m */; };
 		F1463A681F4C08EC0053135F /* XBAlertViewBase+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = F1463A671F4C08EC0053135F /* XBAlertViewBase+Queue.m */; };
 		F14717561F7F8C8900FDC5DA /* XBCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14717541F7F8C8900FDC5DA /* XBCircleProgressView.m */; };
 		F147175B1F7F8D4300FDC5DA /* UIColor+Extern.m in Sources */ = {isa = PBXBuildFile; fileRef = F147175A1F7F8D4300FDC5DA /* UIColor+Extern.m */; };
 		F147175E1F7F8DE500FDC5DA /* XBAlertView_progress.m in Sources */ = {isa = PBXBuildFile; fileRef = F147175D1F7F8DE500FDC5DA /* XBAlertView_progress.m */; };
 		F14909DD1F4537120013C38B /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = F14909DC1F4537120013C38B /* UIView+Animation.m */; };
 		F1490A251F45CC610013C38B /* XBAlertView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = F1490A201F45CC610013C38B /* XBAlertView+Block.m */; };
-		F1490A271F45CC610013C38B /* XBAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1490A241F45CC610013C38B /* XBAlertViewManager.m */; };
 		F1FF69BA1F3070FE001EC42A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FF69B91F3070FE001EC42A /* main.m */; };
 		F1FF69BD1F3070FE001EC42A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FF69BC1F3070FE001EC42A /* AppDelegate.m */; };
 		F1FF69C01F3070FE001EC42A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FF69BF1F3070FE001EC42A /* ViewController.m */; };
@@ -55,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F134C4CC209AADC0006CCC3E /* XBAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAlertViewManager.m; sourceTree = "<group>"; };
+		F134C4CD209AADC0006CCC3E /* XBAlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAlertViewManager.h; sourceTree = "<group>"; };
 		F1463A661F4C08EC0053135F /* XBAlertViewBase+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XBAlertViewBase+Queue.h"; sourceTree = "<group>"; };
 		F1463A671F4C08EC0053135F /* XBAlertViewBase+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XBAlertViewBase+Queue.m"; sourceTree = "<group>"; };
 		F14717531F7F8C8900FDC5DA /* XBCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBCircleProgressView.h; sourceTree = "<group>"; };
@@ -69,8 +71,6 @@
 		F14909DC1F4537120013C38B /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		F1490A1F1F45CC610013C38B /* XBAlertView+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XBAlertView+Block.h"; sourceTree = "<group>"; };
 		F1490A201F45CC610013C38B /* XBAlertView+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XBAlertView+Block.m"; sourceTree = "<group>"; };
-		F1490A231F45CC610013C38B /* XBAlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAlertViewManager.h; sourceTree = "<group>"; };
-		F1490A241F45CC610013C38B /* XBAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAlertViewManager.m; sourceTree = "<group>"; };
 		F1FF69B51F3070FE001EC42A /* XBAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XBAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FF69B91F3070FE001EC42A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F1FF69BB1F3070FE001EC42A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -231,6 +231,8 @@
 		F1FF69EB1F307116001EC42A /* XBAlertViewBase */ = {
 			isa = PBXGroup;
 			children = (
+				F134C4CD209AADC0006CCC3E /* XBAlertViewManager.h */,
+				F134C4CC209AADC0006CCC3E /* XBAlertViewManager.m */,
 				F14909DB1F4537120013C38B /* UIView+Animation.h */,
 				F14909DC1F4537120013C38B /* UIView+Animation.m */,
 				F1FF69F51F307141001EC42A /* UIView+AdaptKeyboard.h */,
@@ -249,8 +251,6 @@
 			children = (
 				F1490A1F1F45CC610013C38B /* XBAlertView+Block.h */,
 				F1490A201F45CC610013C38B /* XBAlertView+Block.m */,
-				F1490A231F45CC610013C38B /* XBAlertViewManager.h */,
-				F1490A241F45CC610013C38B /* XBAlertViewManager.m */,
 				F1FF69F11F30712C001EC42A /* XBAlertView.h */,
 				F1FF69F21F30712C001EC42A /* XBAlertView.m */,
 				F1FF69F31F30712C001EC42A /* XBAlertViewConfig.h */,
@@ -427,9 +427,9 @@
 				F1FF6A131F30716C001EC42A /* MASConstraint.m in Sources */,
 				F147175B1F7F8D4300FDC5DA /* UIColor+Extern.m in Sources */,
 				F1FF6A161F30716C001EC42A /* MASViewAttribute.m in Sources */,
+				F134C4CE209AADC0006CCC3E /* XBAlertViewManager.m in Sources */,
 				F1463A681F4C08EC0053135F /* XBAlertViewBase+Queue.m in Sources */,
 				F1FF6A1B1F30716C001EC42A /* ViewController+MASAdditions.m in Sources */,
-				F1490A271F45CC610013C38B /* XBAlertViewManager.m in Sources */,
 				F1FF6A181F30716C001EC42A /* NSArray+MASAdditions.m in Sources */,
 				F1FF69EF1F307116001EC42A /* XBAlertViewBase.m in Sources */,
 				F1FF6A171F30716C001EC42A /* MASViewConstraint.m in Sources */,
