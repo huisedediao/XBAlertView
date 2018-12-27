@@ -34,7 +34,7 @@
     return self;
 }
 
-- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
+- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
 {
     UIWindow *window = [XBAlertViewManager shared].window;
     if (self = [super initWithDisplayView:window])
@@ -294,7 +294,16 @@
 }
 - (CGFloat)getSpaceOfMsgAndCustomView
 {
-    return self.str_message.length ? 25 : 0;
+    CGFloat len = 0;
+    if ([self.str_message isKindOfClass:[NSString class]])
+    {
+        len = ((NSString *)self.str_message).length;
+    }
+    else if ([self.str_message isKindOfClass:[NSAttributedString class]])
+    {
+        len = ((NSAttributedString *)self.str_message).length;
+    }
+    return len ? 25 : 0;
 }
 - (CGFloat)getSpaceOfCustomViewAndButton
 {
@@ -390,7 +399,14 @@
         label.textColor = XB_color_Black;
         label.font = XB_Font(16);
         label.numberOfLines = 0;
-        label.text = self.str_message;
+        if ([self.str_message isKindOfClass:[NSAttributedString class]])
+        {
+            label.attributedText = self.str_message;
+        }
+        else if ([self.str_message isKindOfClass:[NSString class]])
+        {
+            label.text = self.str_message;
+        }
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.lb_title.mas_bottom).offset([self getSpaceOfTitleAndMsg]);

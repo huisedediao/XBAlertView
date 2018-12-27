@@ -31,7 +31,7 @@
 @property (nonatomic,strong) UIColor * _Nullable color_partingLine;
 
 @property (nonatomic,copy,readonly) NSString * _Nullable str_title;
-@property (nonatomic,copy,readonly) NSString * _Nullable str_message;
+@property (nonatomic,copy,readonly) id _Nullable str_message;
 
 @property (nonatomic,strong,readonly) NSMutableArray * _Nullable arr_buttonTitles;
 
@@ -50,5 +50,5 @@
 ///自定义的view(只需设置size)
 - (void)customView:(UIView *_Nullable)customView size:(CGSize)size;
 
-- (instancetype _Nullable )initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles;
+- (instancetype _Nullable )initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles;
 @end
