@@ -27,7 +27,7 @@
 //    for (int i =0; i < 5; i++)
     {
         NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"ejfi\rjie\rfjief"];
-        [[[XBAlertView alloc] initWithTitle:@"heheda" message:str delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+        [[[XBAlertView alloc] initWithTitle:@"title" message:str delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok",@"ok1"]] show];
 //        NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"ejfi\rjie\rfjief"];
 //        [[[XBAlertView alloc] initWithTitle:@"heheda" message:str delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok",@"heh"]] show];
     }

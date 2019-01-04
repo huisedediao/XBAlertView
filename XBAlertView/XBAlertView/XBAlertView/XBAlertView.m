@@ -65,6 +65,50 @@
     }
     return self;
 }
+    
+    //- (instancetype _Nullable )initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles,...__attribute__((sentinel))
+    //    {
+    //        NSMutableArray *mutTitles = [NSMutableArray array];
+    //        va_list params;
+    //        va_start(params, otherButtonTitles);
+    //        if (otherButtonTitles){
+    //            [mutTitles addObject:otherButtonTitles];
+    //        }
+    //        NSString *arg;
+    //        while ((arg = va_arg(params, NSString *))){
+    //            [mutTitles addObject:arg];
+    //        }
+    //
+    //        UIWindow *window = [XBAlertViewManager shared].window;
+    //        if (self = [super initWithDisplayView:window])
+    //        {
+    //            _str_title = title;
+    //            _str_message = message;
+    //            self.delegate = delegate;
+    //            if (cancelButtonTitle.length)
+    //            {
+    //                [self.arr_buttonTitles addObject:cancelButtonTitle];
+    //            }
+    //            if (mutTitles.count)
+    //            {
+    //                [self.arr_buttonTitles addObjectsFromArray:mutTitles];
+    //            }
+    //            switch (self.arr_buttonTitles.count)
+    //            {
+    //                case 1:
+    //                self.arr_prominentIndexs = @[@0];
+    //                break;
+    //                case 2:
+    //                self.arr_prominentIndexs = @[@1];
+    //                break;
+    //
+    //                default:
+    //                break;
+    //            }
+    //        }
+    //        return self;
+    //    }
+
 
 - (void)customView:(UIView *)customView size:(CGSize)size
 {

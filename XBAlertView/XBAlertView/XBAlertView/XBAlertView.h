@@ -51,4 +51,7 @@
 - (void)customView:(UIView *_Nullable)customView size:(CGSize)size;
 
 - (instancetype _Nullable )initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles;
+
+//- (instancetype _Nullable )initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles,...__attribute__((sentinel));
+    
 @end

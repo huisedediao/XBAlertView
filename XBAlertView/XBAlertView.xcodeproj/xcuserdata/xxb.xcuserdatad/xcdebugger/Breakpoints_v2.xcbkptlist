@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "XBAlertView/XBAlertView/XBAlertView.m"
-            timestampString = "568277926.197037"
+            timestampString = "568280676.334857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "-createButtonForTwo"
             landmarkType = "7">
          </BreakpointContent>
