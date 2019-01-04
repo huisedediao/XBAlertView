@@ -24,10 +24,12 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
-    for (int i =0; i < 5; i++)
+//    for (int i =0; i < 5; i++)
     {
         NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"ejfi\rjie\rfjief"];
         [[[XBAlertView alloc] initWithTitle:@"heheda" message:str delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];
+//        NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"ejfi\rjie\rfjief"];
+//        [[[XBAlertView alloc] initWithTitle:@"heheda" message:str delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok",@"heh"]] show];
     }
 //    
 //    [[[XBAlertView alloc] initWithTitle:@"heheda" message:@"lalalala!~~~" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok"]] show];

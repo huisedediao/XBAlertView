@@ -27,7 +27,7 @@
         self.fadeInFadeOut = YES;
         self.needAdaptKeyboard = YES;
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.greaterThanOrEqualTo(@(KSpaceToBorder * 2));
+            make.width.greaterThanOrEqualTo(@(KContentSpaceToBorder * 2));
         }];
         _arr_buttonTitles = [NSMutableArray new];
     }
@@ -217,7 +217,7 @@
 {
     if (self.color_btnBG_nor == nil)
     {
-        self.color_btnBG_nor = XB_Color_white;
+        self.color_btnBG_nor = [UIColor whiteColor];
     }
     
     UIView *lastView = nil;
@@ -226,7 +226,7 @@
         UIView *line = [UIView new];
         [self addSubview:line];
         
-        line.backgroundColor = self.color_partingLine ? self.color_partingLine : XB_Color_gray;
+        line.backgroundColor = self.color_partingLine ? self.color_partingLine : XB_Color_btnBGNor;
         
         [line mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (i == 0)
@@ -311,19 +311,19 @@
 }
 - (UIColor *)getBtnTitleColorNor
 {
-    return self.color_btnTitle_nor ? self.color_btnTitle_nor : XB_color_dark;
+    return self.color_btnTitle_nor ? self.color_btnTitle_nor : XB_Color_btnTitleNor;
 }
 - (UIColor *)getBtnTitleColorPirminent
 {
-    return self.color_btnTitle_prominent ? self.color_btnTitle_prominent : XB_Color_white;
+    return self.color_btnTitle_prominent ? self.color_btnTitle_prominent : XB_Color_btnTitlePro;
 }
 - (UIColor *)getBtnBGColorNor
 {
-    return self.color_btnBG_nor ? self.color_btnBG_nor : XB_Color_gray;
+    return self.color_btnBG_nor ? self.color_btnBG_nor : XB_Color_btnBGNor;
 }
 - (UIColor *)getBtnBGColorPirminent
 {
-    return self.color_btnBG_prominent ? self.color_btnBG_prominent : XB_Color_blue;
+    return self.color_btnBG_prominent ? self.color_btnBG_prominent : XB_Color_btnBGPro;
 }
 - (UIColor *)getBtnBgColorWithTag:(NSInteger)tag
 {
@@ -372,15 +372,15 @@
         [self addSubview:label];
         
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = XB_color_Black;
+        label.textColor = XB_color_title;
         label.font = XB_Font_bold(20);
         label.numberOfLines = 0;
         label.text = self.str_title;
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(25);
-            make.leading.equalTo(self).offset(KSpaceToBorder);
-            make.trailing.equalTo(self).offset(-KSpaceToBorder);
+            make.leading.equalTo(self).offset(KContentSpaceToBorder);
+            make.trailing.equalTo(self).offset(-KContentSpaceToBorder);
         }];
         
         _lb_title = label;
@@ -396,7 +396,7 @@
         [self addSubview:label];
         
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = XB_color_Black;
+        label.textColor = XB_color_msg;
         label.font = XB_Font(16);
         label.numberOfLines = 0;
         if ([self.str_message isKindOfClass:[NSAttributedString class]])
@@ -410,8 +410,8 @@
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.lb_title.mas_bottom).offset([self getSpaceOfTitleAndMsg]);
-            make.leading.equalTo(self).offset(KSpaceToBorder);
-            make.trailing.equalTo(self).offset(-KSpaceToBorder);
+            make.leading.equalTo(self).offset(KContentSpaceToBorder);
+            make.trailing.equalTo(self).offset(-KContentSpaceToBorder);
         }];
         
         _lb_message = label;
