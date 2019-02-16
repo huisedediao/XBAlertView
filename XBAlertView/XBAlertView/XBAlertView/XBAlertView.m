@@ -255,7 +255,7 @@
         make.width.mas_equalTo(SINGLE_LINE_WIDTH);
         make.centerX.equalTo(self);
         make.height.top.equalTo(button1);
-    }];
+    }]; 
 }
 - (void)createButtonForThreeOrMore
 {
@@ -270,7 +270,7 @@
         UIView *line = [UIView new];
         [self addSubview:line];
         
-        line.backgroundColor = self.color_partingLine ? self.color_partingLine : XB_Color_btnBGNor;
+        line.backgroundColor = self.color_partingLine ? self.color_partingLine : XBAlertViewColor_partingLineGray;
         
         [line mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (i == 0)
@@ -309,7 +309,7 @@
     [self addSubview:button];
     
     button.tag = tag + kXBAlertViewTagBase;
-    button.titleLabel.font = XB_Font(18);
+    button.titleLabel.font = XBAlertViewFont(18);
     [button setBackgroundImage:[self createImageWithColor:[self getBtnBgColorWithTag:tag]] forState:UIControlStateNormal];
     [button setBackgroundImage:[self createImageWithColor:[[self getBtnBgColorWithTag:tag] colorWithAlphaComponent:0.6]] forState:UIControlStateHighlighted];
     [button setTitleColor:[self getBtnTitleColorWithTag:tag] forState:UIControlStateNormal];
@@ -355,19 +355,19 @@
 }
 - (UIColor *)getBtnTitleColorNor
 {
-    return self.color_btnTitle_nor ? self.color_btnTitle_nor : XB_Color_btnTitleNor;
+    return self.color_btnTitle_nor ? self.color_btnTitle_nor : XBAlertViewColor_btnTitleNor;
 }
 - (UIColor *)getBtnTitleColorPirminent
 {
-    return self.color_btnTitle_prominent ? self.color_btnTitle_prominent : XB_Color_btnTitlePro;
+    return self.color_btnTitle_prominent ? self.color_btnTitle_prominent : XBAlertViewColor_btnTitlePro;
 }
 - (UIColor *)getBtnBGColorNor
 {
-    return self.color_btnBG_nor ? self.color_btnBG_nor : XB_Color_btnBGNor;
+    return self.color_btnBG_nor ? self.color_btnBG_nor : XBAlertViewColor_btnBGNor;
 }
 - (UIColor *)getBtnBGColorPirminent
 {
-    return self.color_btnBG_prominent ? self.color_btnBG_prominent : XB_Color_btnBGPro;
+    return self.color_btnBG_prominent ? self.color_btnBG_prominent : XBAlertViewColor_btnBGPro;
 }
 - (UIColor *)getBtnBgColorWithTag:(NSInteger)tag
 {
@@ -416,8 +416,8 @@
         [self addSubview:label];
         
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = XB_color_title;
-        label.font = XB_Font_bold(20);
+        label.textColor = XBAlertViewColor_title;
+        label.font = XBAlertViewFont_bold(20);
         label.numberOfLines = 0;
         label.text = self.str_title;
         
@@ -440,8 +440,8 @@
         [self addSubview:label];
         
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = XB_color_msg;
-        label.font = XB_Font(16);
+        label.textColor = XBAlertViewColor_msg;
+        label.font = XBAlertViewFont(16);
         label.numberOfLines = 0;
         if ([self.str_message isKindOfClass:[NSAttributedString class]])
         {
