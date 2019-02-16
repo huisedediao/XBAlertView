@@ -51,7 +51,7 @@
 {
     return [self initWithTitle:title message:message
              cancelButtonTitle:cancelButtonTitle
-             otherButtonTitles:@[otherButtonTitle]];
+             otherButtonTitles:otherButtonTitle.length ? @[otherButtonTitle] : nil];
 }
 
 

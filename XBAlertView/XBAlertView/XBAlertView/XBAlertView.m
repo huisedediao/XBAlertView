@@ -27,14 +27,14 @@
         self.fadeInFadeOut = YES;
         self.needAdaptKeyboard = YES;
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.greaterThanOrEqualTo(@(KSpaceToBorder * 2));
+            make.width.greaterThanOrEqualTo(@(KContentSpaceToBorder * 2));
         }];
         _arr_buttonTitles = [NSMutableArray new];
     }
     return self;
 }
 
-- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
+- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
 {
     UIWindow *window = [XBAlertViewManager shared].window;
     if (self = [super initWithDisplayView:window])
@@ -65,6 +65,50 @@
     }
     return self;
 }
+    
+    //- (instancetype _Nullable )initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles,...__attribute__((sentinel))
+    //    {
+    //        NSMutableArray *mutTitles = [NSMutableArray array];
+    //        va_list params;
+    //        va_start(params, otherButtonTitles);
+    //        if (otherButtonTitles){
+    //            [mutTitles addObject:otherButtonTitles];
+    //        }
+    //        NSString *arg;
+    //        while ((arg = va_arg(params, NSString *))){
+    //            [mutTitles addObject:arg];
+    //        }
+    //
+    //        UIWindow *window = [XBAlertViewManager shared].window;
+    //        if (self = [super initWithDisplayView:window])
+    //        {
+    //            _str_title = title;
+    //            _str_message = message;
+    //            self.delegate = delegate;
+    //            if (cancelButtonTitle.length)
+    //            {
+    //                [self.arr_buttonTitles addObject:cancelButtonTitle];
+    //            }
+    //            if (mutTitles.count)
+    //            {
+    //                [self.arr_buttonTitles addObjectsFromArray:mutTitles];
+    //            }
+    //            switch (self.arr_buttonTitles.count)
+    //            {
+    //                case 1:
+    //                self.arr_prominentIndexs = @[@0];
+    //                break;
+    //                case 2:
+    //                self.arr_prominentIndexs = @[@1];
+    //                break;
+    //
+    //                default:
+    //                break;
+    //            }
+    //        }
+    //        return self;
+    //    }
+
 
 - (void)customView:(UIView *)customView size:(CGSize)size
 {
@@ -217,7 +261,7 @@
 {
     if (self.color_btnBG_nor == nil)
     {
-        self.color_btnBG_nor = XB_Color_white;
+        self.color_btnBG_nor = [UIColor whiteColor];
     }
     
     UIView *lastView = nil;
@@ -226,7 +270,7 @@
         UIView *line = [UIView new];
         [self addSubview:line];
         
-        line.backgroundColor = self.color_partingLine ? self.color_partingLine : XB_Color_gray;
+        line.backgroundColor = self.color_partingLine ? self.color_partingLine : XB_Color_btnBGNor;
         
         [line mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (i == 0)
@@ -294,7 +338,16 @@
 }
 - (CGFloat)getSpaceOfMsgAndCustomView
 {
-    return self.str_message.length ? 25 : 0;
+    CGFloat len = 0;
+    if ([self.str_message isKindOfClass:[NSString class]])
+    {
+        len = ((NSString *)self.str_message).length;
+    }
+    else if ([self.str_message isKindOfClass:[NSAttributedString class]])
+    {
+        len = ((NSAttributedString *)self.str_message).length;
+    }
+    return len ? 25 : 0;
 }
 - (CGFloat)getSpaceOfCustomViewAndButton
 {
@@ -302,19 +355,19 @@
 }
 - (UIColor *)getBtnTitleColorNor
 {
-    return self.color_btnTitle_nor ? self.color_btnTitle_nor : XB_color_dark;
+    return self.color_btnTitle_nor ? self.color_btnTitle_nor : XB_Color_btnTitleNor;
 }
 - (UIColor *)getBtnTitleColorPirminent
 {
-    return self.color_btnTitle_prominent ? self.color_btnTitle_prominent : XB_Color_white;
+    return self.color_btnTitle_prominent ? self.color_btnTitle_prominent : XB_Color_btnTitlePro;
 }
 - (UIColor *)getBtnBGColorNor
 {
-    return self.color_btnBG_nor ? self.color_btnBG_nor : XB_Color_gray;
+    return self.color_btnBG_nor ? self.color_btnBG_nor : XB_Color_btnBGNor;
 }
 - (UIColor *)getBtnBGColorPirminent
 {
-    return self.color_btnBG_prominent ? self.color_btnBG_prominent : XB_Color_blue;
+    return self.color_btnBG_prominent ? self.color_btnBG_prominent : XB_Color_btnBGPro;
 }
 - (UIColor *)getBtnBgColorWithTag:(NSInteger)tag
 {
@@ -363,15 +416,15 @@
         [self addSubview:label];
         
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = XB_color_Black;
+        label.textColor = XB_color_title;
         label.font = XB_Font_bold(20);
         label.numberOfLines = 0;
         label.text = self.str_title;
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(25);
-            make.leading.equalTo(self).offset(KSpaceToBorder);
-            make.trailing.equalTo(self).offset(-KSpaceToBorder);
+            make.leading.equalTo(self).offset(KContentSpaceToBorder);
+            make.trailing.equalTo(self).offset(-KContentSpaceToBorder);
         }];
         
         _lb_title = label;
@@ -387,15 +440,22 @@
         [self addSubview:label];
         
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = XB_color_Black;
+        label.textColor = XB_color_msg;
         label.font = XB_Font(16);
         label.numberOfLines = 0;
-        label.text = self.str_message;
+        if ([self.str_message isKindOfClass:[NSAttributedString class]])
+        {
+            label.attributedText = self.str_message;
+        }
+        else if ([self.str_message isKindOfClass:[NSString class]])
+        {
+            label.text = self.str_message;
+        }
         
         [label mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.lb_title.mas_bottom).offset([self getSpaceOfTitleAndMsg]);
-            make.leading.equalTo(self).offset(KSpaceToBorder);
-            make.trailing.equalTo(self).offset(-KSpaceToBorder);
+            make.leading.equalTo(self).offset(KContentSpaceToBorder);
+            make.trailing.equalTo(self).offset(-KContentSpaceToBorder);
         }];
         
         _lb_message = label;
