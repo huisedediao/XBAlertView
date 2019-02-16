@@ -166,7 +166,7 @@
     [button addSubview:line];
     line.backgroundColor = self.color_partingLine;
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(0.5);
+        make.height.mas_equalTo(SINGLE_LINE_WIDTH);
         make.leading.trailing.top.equalTo(button);
     }];
 }
@@ -199,7 +199,7 @@
     [self addSubview:lineH];
     lineH.backgroundColor = self.color_partingLine;
     [lineH mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(0.5);
+        make.height.mas_equalTo(SINGLE_LINE_WIDTH);
         make.leading.trailing.equalTo(self);
         make.top.equalTo(button1);
     }];
@@ -208,7 +208,7 @@
     [self addSubview:lineV];
     lineV.backgroundColor = self.color_partingLine;
     [lineV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(0.5);
+        make.width.mas_equalTo(SINGLE_LINE_WIDTH);
         make.centerX.equalTo(self);
         make.height.top.equalTo(button1);
     }];
@@ -240,7 +240,7 @@
             }
             
             make.leading.trailing.equalTo(self);
-            make.height.mas_equalTo(1 / [UIScreen mainScreen].scale);
+            make.height.mas_equalTo(SINGLE_LINE_WIDTH);
         }];
         
         UIButton *button = [self createButtonWithTag:i];

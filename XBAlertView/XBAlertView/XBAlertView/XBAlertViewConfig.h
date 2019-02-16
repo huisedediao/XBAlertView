@@ -9,6 +9,9 @@
 #ifndef XBAlertViewConfig_h
 #define XBAlertViewConfig_h
 
+//1像素线宽
+#define SINGLE_LINE_WIDTH           (1 / [UIScreen mainScreen].scale)
+
 #define kXBAlertViewTagBase (10010)
 #define kXBAlertViewButtonHeight (50)
 #define KSpaceToBorder (30)
