@@ -9,7 +9,6 @@
 #import "XBAlertView.h"
 #import "Masonry.h"
 #import "XBAlertViewConfig.h"
-#import "XBAlertViewManager.h"
 
 @interface XBAlertView ()
 @property (nonatomic,assign) BOOL actionBeforeShowRunned;
@@ -36,7 +35,11 @@
 
 - (instancetype)initWithTitle:(nullable NSString *)title message:(nullable id)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles
 {
-    UIWindow *window = [XBAlertViewManager shared].window;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (window == nil)
+    {
+        window = [[UIApplication sharedApplication].windows lastObject];
+    }
     if (self = [super initWithDisplayView:window])
     {
         _str_title = title;

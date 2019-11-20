@@ -24,7 +24,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
-//    for (int i =0; i < 5; i++)
+    for (int i =0; i < 5; i++)
     {
         NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"ejfi\rjie\rfjief"];
         [[[XBAlertView alloc] initWithTitle:@"title" message:str delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@[@"ok",@"ok1"]] show];
